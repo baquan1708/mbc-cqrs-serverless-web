@@ -1,0 +1,93 @@
+{
+  "name": "mbc-cqrs-serverless-web",
+  "version": "0.0.1",
+  "private": false,
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "scripts": {
+    "dev": "npm run build && next dev -p 8888",
+    "prebuild": "rm -rf dist",
+    "build": "tsup && node ./postbuild.js",
+    "start": "next start -p 8999",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.13.1",
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/modifiers": "^9.0.0",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@hookform/resolvers": "^3.3.4",
+    "@radix-ui/react-accordion": "^1.2.3",
+    "@radix-ui/react-alert-dialog": "^1.0.5",
+    "@radix-ui/react-checkbox": "^1.3.2",
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-dropdown-menu": "^2.0.6",
+    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-popover": "^1.0.7",
+    "@radix-ui/react-radio-group": "^1.3.7",
+    "@radix-ui/react-select": "^2.0.0",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-switch": "^1.0.3",
+    "@radix-ui/react-toast": "^1.1.5",
+    "@tanstack/react-table": "^8.21.3",
+    "@uiw/react-md-editor": "^3.6.0",
+    "aws-amplify": "^5.0.5",
+    "aws-appsync-auth-link": "^3.0.7",
+    "aws-appsync-subscription-link": "^3.1.3",
+    "axios": "^1.6.8",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "cmdk": "^1.1.1",
+    "date-fns": "^4.1.0",
+    "jsoneditor": "^10.0.2",
+    "lucide-react": "^0.372.0",
+    "mobx-react-lite": "^3.4.0",
+    "next-usequerystate": "^1.20.0",
+    "nuqs": "^1.17.1",
+    "patch-package": "^8.0.0",
+    "react": "^18.0.0",
+    "react-day-picker": "^9.8.0",
+    "react-dom": "^18.0.0",
+    "react-draggable": "^4.4.6",
+    "react-hook-form": "^7.51.3",
+    "react-quill": "^2.0.0",
+    "react-resizable": "^3.0.5",
+    "retry-axios": "^3.1.3",
+    "swr": "^2.2.5",
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss-animate": "^1.0.7",
+    "usehooks-ts": "^3.1.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "next": "^14.0.0",
+    "@swc/core": "^1.12.9",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.2",
+    "glob": "^11.0.3",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "tsup": "^8.0.2",
+    "typescript": "^5"
+  },
+  "peerDependencies": {
+    "next": "^14.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  }
+}
