@@ -1,0 +1,92 @@
+:root {
+  /* Main Theme & Backgrounds */
+  --background: 220 20% 98%; /* Very light gray, almost white */
+  --foreground: 224 10% 10%; /* Very dark slate for text */
+  --card: 0 0% 100%;
+  --card-foreground: 224 10% 10%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 224 10% 10%;
+
+  /* Primary Actions */
+  --primary: 221 83% 53%; /* Bright, professional slate blue */
+  --primary-foreground: 0 0% 100%;
+
+  /* Secondary Actions & Subtle Elements */
+  --secondary: 220 15% 96%; /* Light gray */
+  --secondary-foreground: 224 10% 10%;
+
+  /* Accent & State Colors */
+  --accent: 220 15% 93%; /* Slightly darker gray for hover states */
+  --accent-foreground: 224 10% 10%;
+  --destructive: 0 72% 51%; /* Clear red */
+  --destructive-foreground: 0 0% 100%;
+  --success: 142 71% 45%; /* Vibrant green */
+  --success-foreground: 0 0% 100%;
+  --warning: 38 92% 50%; /* Bright amber */
+  --warning-foreground: 224 10% 10%;
+  --info: 204 92% 50%; /* Bright cyan */
+  --info-foreground: 0 0% 100%;
+
+  /* Emphasis & Headers */
+  --emphasis: 224 10% 15%; /* Dark slate for strong headers */
+  --emphasis-foreground: 0 0% 100%;
+
+  /* UI Elements */
+  --muted: 220 15% 96%; /* Muted backgrounds */
+  --muted-foreground: 220 9% 46%; /* Muted text */
+  --border: 220 13% 91%; /* Subtle border color */
+  --input: 220 13% 91%; /* Input background */
+  --ring: 221 83% 53%; /* Focus ring matches primary color */
+
+  /* General */
+  --radius: 0.5rem;
+}
+
+/*
+  ==========================================================================
+    Slate Theme - Dark Mode
+  ==========================================================================
+  */
+.dark {
+  /* Main Theme & Backgrounds */
+  --background: 224 10% 10%; /* Very dark slate */
+  --foreground: 210 20% 98%; /* Almost white text */
+  --card: 224 10% 15%; /* Slightly lighter than background */
+  --card-foreground: 210 20% 98%;
+  --popover: 224 10% 15%;
+  --popover-foreground: 210 20% 98%;
+
+  /* Primary Actions */
+  --primary: 217 91% 60%; /* Lighter, vibrant blue for dark mode */
+  --primary-foreground: 224 10% 10%;
+
+  /* Secondary Actions & Subtle Elements */
+  --secondary: 215 28% 17%; /* Dark gray */
+  --secondary-foreground: 210 20% 98%;
+
+  /* Accent & State Colors */
+  --accent: 215 28% 17%;
+  --accent-foreground: 210 20% 98%;
+  --destructive: 0 63% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --success: 142 71% 35%;
+  --success-foreground: 0 0% 100%;
+  --warning: 38 92% 40%;
+  --warning-foreground: 224 10% 10%;
+  --info: 204 92% 40%;
+  --info-foreground: 0 0% 100%;
+
+  /* Emphasis & Headers */
+  --emphasis: 215 28% 17%;
+  --emphasis-foreground: 210 20% 98%;
+
+  /* UI Elements */
+  --muted: 215 28% 17%;
+  --muted-foreground: 215 20% 65%;
+  --border: 215 28% 17%;
+  --input: 215 28% 17%;
+  --ring: 217 91% 60%;
+
+  /* General */
+  --radius: 0.5rem;
+}
