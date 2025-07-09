@@ -44,11 +44,11 @@ jobs:
           
           # Publish the package to the npm registry
 
-          echo ffffffff $NPM_TOKEN
+          echo ffffffff $NODE_AUTH_TOKEN
           npm publish --access public
         env:
           # Use the NPM_TOKEN secret to authenticate with the npm registry
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       # Step 7: Push the new commit and tag back to the GitHub repository
       - name: Push changes
