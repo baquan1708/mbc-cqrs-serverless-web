@@ -1,0 +1,17 @@
+.jsoneditor-react-container {
+  width: 100%;
+  height: 100%;
+}
+.jsoneditor-react-container .jsoneditor-menu {
+  background-color: hsl(var(--primary));
+  border-bottom: 1px solid hsl(var(--primary));
+}
+.jsoneditor-poweredBy {
+  display: none !important;
+}
+.jsoneditor-react-container .jsoneditor {
+  border: thin solid hsl(var(--primary));
+}
+.ace-jsoneditor {
+  min-height: auto;
+}

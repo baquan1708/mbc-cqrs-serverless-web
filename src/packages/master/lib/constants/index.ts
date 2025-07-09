@@ -1,0 +1,2 @@
+export const TENANT_SYSTEM_CODE = '9999'
+export const HEALTH_CHECK_INTERVAL = 60000
