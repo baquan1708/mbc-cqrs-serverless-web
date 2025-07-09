@@ -43,6 +43,8 @@ jobs:
           npm version patch -m "chore(release): %s"
           
           # Publish the package to the npm registry
+
+          echo ffffffff $NPM_TOKEN
           npm publish --access public
         env:
           # Use the NPM_TOKEN secret to authenticate with the npm registry
