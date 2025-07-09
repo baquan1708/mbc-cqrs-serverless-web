@@ -15,11 +15,10 @@ jobs:
           fetch-depth: 0
 
       # Step 2: Set up the Node.js environment
-      # This action also configures the .npmrc file for authentication with the registry.
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18.x' # Specify the Node.js version to use
+          node-version: '20.x' # Specify the Node.js version to use
           registry-url: 'https://registry.npmjs.org' # Set the registry to npm
 
       # Step 3: Install project dependencies
@@ -43,13 +42,10 @@ jobs:
           # The '%s' in the commit message is a placeholder for the new version number.
           npm version patch -m "chore(release): %s"
           
-          # Publish the package to the npm registry.
-          # The '--access public' flag is added to ensure it can be published publicly,
-          # which is often necessary for scoped packages (@scope/package).
-          npm publish --access public
+          # Publish the package to the npm registry
+          npm publish
         env:
-          # This environment variable is used by npm to authenticate.
-          # It gets its value from the GitHub secret you created.
+          # Use the NPM_TOKEN secret to authenticate with the npm registry
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       # Step 7: Push the new commit and tag back to the GitHub repository
