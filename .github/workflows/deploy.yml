@@ -50,7 +50,7 @@ jobs:
         env:
           # This environment variable is used by npm to authenticate.
           # It gets its value from the GitHub secret you created.
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       # Step 7: Push the new commit and tag back to the GitHub repository
       - name: Push changes
