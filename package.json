@@ -1,5 +1,5 @@
 {
-  "name": "mbc-cqrs-serverless-web",
+  "name": "test-cqrs/master",
   "version": "0.0.2",
   "private": false,
   "main": "dist/index.js",
