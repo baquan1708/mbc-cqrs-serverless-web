@@ -9,6 +9,7 @@ import React, {
   useContext,
   useMemo,
   useState,
+  useRef,
 } from 'react'
 import { createPortal } from 'react-dom'
 import Draggable from 'react-draggable'
@@ -49,6 +50,7 @@ function Open({
 
 function Window({ children, name, className, ...props }: any) {
   const { openName, close } = useContext(ModalContext)!
+  const nodeRef = useRef(null)
 
   const [size, setSize] = useState({
     width: 800,
@@ -70,11 +72,12 @@ function Window({ children, name, className, ...props }: any) {
 
   return createPortal(
     <Draggable
+      nodeRef={nodeRef}
       cancel=".react-resizable-handle, .jsoneditor-react-container"
       defaultClassName="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-move z-[1000]"
-      positionOffset={{ x: '-50%', y: '-50%' }}
+      // positionOffset={{ x: '-50%', y: '-50%' }}
     >
-      <div style={style}>
+      <div style={style} ref={nodeRef}>
         <ResizableBox
           width={size.width}
           height={size.height}
