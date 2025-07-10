@@ -78,7 +78,6 @@ export default function EditMasterData() {
   const sk = params?.sk ? decodeURIComponent(params.sk) : undefined
 
   const loadingStore = useLoadingStore()
-  loadingStore.closeLoading()
 
   const isEdit = !!(pk && sk)
   let typeCode = isEdit
@@ -361,6 +360,10 @@ export default function EditMasterData() {
     const isDeleted = action === ActionButton.DELETE
     setResData((prev) => ({ ...prev, isDeleted }))
   }
+
+  useEffect(() => {
+    loadingStore.closeLoading()
+  }, [loadingStore])
 
   useEffect(() => {
     fetchSettings()

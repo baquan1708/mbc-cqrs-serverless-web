@@ -1,8 +1,8 @@
 'use client'
 
 import React from 'react'
-import ReactQuill from 'react-quill'
-import 'react-quill/dist/quill.snow.css' // or 'quill.bubble.css'
+import ReactQuill from 'react-quill-new'
+import 'react-quill-new/dist/quill.snow.css' // or 'quill.bubble.css'
 
 /*
  * Custom toolbar options
