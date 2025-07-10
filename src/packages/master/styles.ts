@@ -8,7 +8,7 @@ import 'jsoneditor/dist/jsoneditor.css'
 import './components/JSONEditorComponent/JSONEditorComponent.css'
 
 // Quill (for Editor component) styles
-import 'react-quill/dist/quill.snow.css'
+import 'react-quill-new/dist/quill.snow.css'
 
 // Other component styles that were previously commented out or needed
 import './modules/edit-master-settings/components/field-editor/style.css'
