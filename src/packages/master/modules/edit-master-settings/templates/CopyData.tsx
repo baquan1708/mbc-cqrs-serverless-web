@@ -63,7 +63,7 @@ export default function CopyMasterSettings() {
       loadingStore.setLoading()
       try {
         const res = await httpClient.get<TaskEntity[]>(
-          API_URLS.PARENT_TASK_API_URL,
+          API_URLS.TASK.PARENT_TASK,
           {
             params: { masterSettingCode: params.sk.split('#').at(-1) },
           }

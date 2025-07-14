@@ -8,9 +8,9 @@ export const isCodeUnique = async (httpClient, settingCode, code) => {
 
   try {
     const response = await httpClient.post(
-      `${API_URLS.DATA_CODE_CHECK_API_URL}/${encodeURIComponent(
-        `${settingCode}#${trimmedCode}`
-      )}`
+      `${API_URLS.DATA.CHECK_EXIST}/${encodeURIComponent(
+        settingCode
+      )}/${encodeURIComponent(trimmedCode)}`
     )
 
     // !isExist -> true if unique, false if not.

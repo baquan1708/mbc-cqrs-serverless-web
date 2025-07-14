@@ -46,7 +46,7 @@ export default function RestoreButton({
     setSubmitting(true)
     const res = (
       await httpClient.put<DataSettingDataEntity>(
-        `${API_URLS.DATA_API_URL}/${encodeURIComponent(
+        `${API_URLS.DATA.UPDATE}/${encodeURIComponent(
           `${restoreItem.pk}#${restoreItem.sk}`
         )}`,
         {

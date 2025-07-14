@@ -98,7 +98,7 @@ export default function SettingsForm({
 
   const fetchFormatOptions = async () => {
     const data = (
-      await httpClient.get<MasterRdsListEntity>(API_URLS.DATA_API_URL, {
+      await httpClient.get<MasterRdsListEntity>(API_URLS.DATA.GET_ALL, {
         params: {
           settingCode: SEQUENCE_CODE,
           page: 1,
@@ -174,7 +174,7 @@ export default function SettingsForm({
       if (editedData) {
         res = (
           await httpClient.put<SettingDataEntity>(
-            `${API_URLS.SETTINGS_API_URL}/${encodeURIComponent(
+            `${API_URLS.SETTING.UPDATE}/${encodeURIComponent(
               `${editedData.pk}#${editedData.sk}`
             )}`,
             dto
@@ -182,7 +182,7 @@ export default function SettingsForm({
         ).data
       } else {
         res = (
-          await httpClient.post<SettingDataEntity>(API_URLS.SETTINGS_API_URL, {
+          await httpClient.post<SettingDataEntity>(API_URLS.SETTING.CREATE, {
             ...dto,
             settingValue: dto.attributes,
             code: dto.code?.trim(),
