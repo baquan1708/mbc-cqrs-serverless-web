@@ -83,18 +83,33 @@ export class BaseUrlProvider implements IUrlProvider {
 
 // api
 export const API_URLS = {
-  SETTINGS_API_URL: '/master-setting',
-  SETTINGS_CODE_CHECK_API_URL: '/master-setting/check-exist',
-  SETTINGS_BULK_UPDATE_API_URL: '/master-setting/bulk',
-  DATA_API_URL: '/master-data',
-  DATA_CODE_CHECK_API_URL: '/master-data/check-exist',
-  DATA_BULK_UPDATE_API_URL: '/master-data/bulk',
-  HEALTH_API_URL: '/health',
-  SEQUENCE_WITH_PROVIDED_SETTING_API_URL:
-    '/sequence/with-provided-setting',
-  SEQUENCE_API_URL: '/sequence',
-  PARENT_TASK_API_URL: '/tasks/sfn-task-parent',
-  TASK_API_URL: '/tasks',
-  CCI_API_URL: '/master/cci',
-  MASTER_COPY_API_URL: '/master/copy',
+  SETTING: {
+    GET_ALL: '/master-setting/list',
+    GET_ONE: '/master-setting/detail',
+    CREATE: '/master-setting',
+    CREATE_BULK: '/master-setting/bulk',
+    UPDATE: '/master-setting',
+    DELETE: '/master-setting/delete',
+    CHECK_EXIST: '/master-setting/check-exist',
+  },
+  DATA: {
+    GET_ALL: '/master-data/list',
+    GET_ONE: '/master-data/detail',
+    CREATE: '/master-data/create',
+    CREATE_BULK: '/master-data/bulk',
+    UPDATE: '/master-data',
+    DELETE: '/master-data',
+    CHECK_EXIST: '/master-data/check-exist',
+  },
+  TASK: {
+    PARENT_TASK: '/tasks/sfn-task-parent',
+    DETAIL: '/tasks',
+  },
+  SEQUENCE: {
+    WITH_PROVIDED_SETTING: '/sequence/with-provided-setting',
+    WITHOUT_PROVIDED_SETTING: '/sequence',
+  },
+  HEALTH: '/',
+  CCI: '/master/cci',
+  MASTER_COPY: '/master/copy',
 }

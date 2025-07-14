@@ -107,7 +107,7 @@ export default function NewCopyMasterSettings() {
       pageSize: data?.count || countDefault,
     }
     const paginate = (
-      await httpClient.get(API_URLS.DATA_API_URL, {
+      await httpClient.get(API_URLS.DATA.GET_ALL, {
         params: {
           ...props,
           settingCode: params.sk.split('#').at(-1),
@@ -156,13 +156,13 @@ export default function NewCopyMasterSettings() {
     const fetchInitialData = async () => {
       try {
         const settingRes = await httpClient.get<SettingDataEntity>(
-          `${API_URLS.SETTINGS_API_URL}/${encodeURIComponent(
-            params.pk!
-          )}/${encodeURIComponent(params.sk!)}`
+          `${API_URLS.DATA.GET_ONE}/${encodeURIComponent(
+            `${params.pk!}#${params.sk!}`
+          )}`
         )
         setCurrentSetting(settingRes.data)
 
-        const cciRes = await httpClient.get(API_URLS.CCI_API_URL)
+        const cciRes = await httpClient.get(API_URLS.CCI)
         setChambersList(
           cciRes.data.map((el: any) => ({
             value: el['商工会議所番号'],
@@ -203,7 +203,7 @@ export default function NewCopyMasterSettings() {
       }),
     }
     try {
-      await httpClient.post(API_URLS.MASTER_COPY_API_URL, requestBody)
+      await httpClient.post(API_URLS.MASTER_COPY, requestBody)
       toast({
         description: '汎用マスタコピーを登録しました。',
         variant: 'success',

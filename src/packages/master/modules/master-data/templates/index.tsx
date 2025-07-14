@@ -100,7 +100,7 @@ export default function MasterData() {
       pageSize: data?.count || countDefault,
     }
     const paginate = (
-      await httpClient.get<MasterRdsListEntity>(API_URLS.DATA_API_URL, {
+      await httpClient.get<MasterRdsListEntity>(API_URLS.DATA.GET_ALL, {
         params: {
           ...props,
           settingCode: data.typeCode.split('#').at(-1),
@@ -273,9 +273,7 @@ export default function MasterData() {
         const sk = `${parts[2]}#${parts.slice(3).join('#')}`
 
         const { data } = await httpClient.get<SettingDataEntity>(
-          `${API_URLS.SETTINGS_API_URL}/${encodeURIComponent(
-            pk!
-          )}/${encodeURIComponent(sk!)}`
+          `${API_URLS.SETTING.GET_ONE}/${encodeURIComponent(`${pk!}#${sk!}`)}`
         )
         setCurrentSetting(data)
       } catch (error) {

@@ -67,7 +67,7 @@ export default function MasterSetting() {
       pageSize: data?.count || countDefault,
     }
     const res = (
-      await httpClient.get<MasterRdsListEntity>(API_URLS.SETTINGS_API_URL, {
+      await httpClient.get<MasterRdsListEntity>(API_URLS.SETTING.GET_ALL, {
         params: {
           ...props,
           orderBys: data.ordering ? [data.ordering] : undefined,

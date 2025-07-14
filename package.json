@@ -17,9 +17,10 @@
     "./styles.css": "./dist/styles.css"
   },
   "scripts": {
-    "dev": "npm run build && next dev -p 8888",
+    "dev": "next dev -p 8888",
     "prebuild": "rm -rf dist",
-    "build": "tsup && node ./postbuild.js",
+    "build": "tsup",
+    "build:watch": "tsup --watch",
     "start": "next start -p 8999",
     "lint": "tsc --noEmit"
   },

@@ -32,9 +32,9 @@ export default function EditMasterSettings() {
       }
 
       try {
-        const url = `${API_URLS.SETTINGS_API_URL}/${encodeURIComponent(
-          pk
-        )}/${encodeURIComponent(sk)}`
+        const url = `${API_URLS.SETTING.GET_ONE}/${encodeURIComponent(
+          `${pk}#${sk}`
+        )}`
         const { data } = await httpClient.get<SettingDataEntity>(url)
         setEditedData(data)
       } catch (error) {

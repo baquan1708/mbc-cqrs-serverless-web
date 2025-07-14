@@ -70,9 +70,9 @@ export default function DetailCopy() {
         const taskKey = extractKeys(params.id)
         const res = (
           await httpClient.get<TaskEntity[]>(
-            `${API_URLS.TASK_API_URL}/${encodeURIComponent(
-              taskKey.pk
-            )}/${encodeURIComponent(`${taskKey.sk}#0`)}`
+            `${API_URLS.TASK.DETAIL}/${encodeURIComponent(
+              `${taskKey.pk}#${taskKey.sk}#0`
+            )}`
           )
         ).data
         setData(res)

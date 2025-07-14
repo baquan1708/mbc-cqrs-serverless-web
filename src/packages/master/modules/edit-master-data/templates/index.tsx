@@ -194,9 +194,7 @@ export default function EditMasterData() {
 
         result = (
           await client.put<DataSettingDataEntity>(
-            `${API_URLS.DATA_API_URL}/${encodeURIComponent(
-              pk
-            )}/${encodeURIComponent(sk)}`,
+            `${API_URLS.DATA.UPDATE}/${encodeURIComponent(`${pk}#${sk}`)}`,
             payload
           )
         ).data
@@ -220,7 +218,7 @@ export default function EditMasterData() {
             // })
             const seqRes = (
               await httpClient.post(
-                API_URLS.SEQUENCE_WITH_PROVIDED_SETTING_API_URL,
+                API_URLS.SEQUENCE.WITH_PROVIDED_SETTING,
                 {
                   tenantCode: tenantCode,
                   typeCode,
@@ -243,7 +241,7 @@ export default function EditMasterData() {
             //   postfix: codeField['postfix'],
             // })
             const seqRes = (
-              await httpClient.post(API_URLS.SEQUENCE_API_URL, {
+              await httpClient.post(API_URLS.SEQUENCE.WITHOUT_PROVIDED_SETTING, {
                 tenantCode: tenantCode,
                 typeCode,
                 rotateBy: GenerateFormattedSequenceDto.rotateBy.NONE,
@@ -282,7 +280,7 @@ export default function EditMasterData() {
 
         result = (
           await client.post<DataSettingDataEntity>(
-            API_URLS.DATA_API_URL,
+            API_URLS.DATA.CREATE,
             payload
           )
         ).data
@@ -318,9 +316,7 @@ export default function EditMasterData() {
       const sk = `${parts[2]}#${parts.slice(3).join('#')}`
 
       const { data } = await httpClient.get<SettingDataEntity>(
-        `${API_URLS.SETTINGS_API_URL}/${encodeURIComponent(
-          pk!
-        )}/${encodeURIComponent(sk!)}`
+        `${API_URLS.SETTING.GET_ONE}/${encodeURIComponent(`${pk!}#${sk!}`)}`
       )
 
       setCurrentSetting(data)
@@ -332,9 +328,7 @@ export default function EditMasterData() {
   const fetchData = async () => {
     try {
       const { data } = await httpClient.get<DataSettingDataEntity>(
-        `${API_URLS.DATA_API_URL}/${encodeURIComponent(
-          pk
-        )}/${encodeURIComponent(sk)}`
+        `${API_URLS.DATA.GET_ONE}/${encodeURIComponent(`${pk}#${sk}`)}`
       )
       const formData = {
         settingCode: typeCode || '',
@@ -476,9 +470,9 @@ export default function EditMasterData() {
           setFormatData({ name } as any)
         } else {
           const { data } = await httpClient.get<DataSettingDataEntity>(
-            `${API_URLS.DATA_API_URL}/${encodeURIComponent(
-              pk
-            )}/${encodeURIComponent(settingCodeField.dataFormat)}`
+            `${API_URLS.DATA.GET_ONE}/${encodeURIComponent(
+              `${pk}#${settingCodeField.dataFormat}`
+            )}`
           )
           setFormatData(data)
         }

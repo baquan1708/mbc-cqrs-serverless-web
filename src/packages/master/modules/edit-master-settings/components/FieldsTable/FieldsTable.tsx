@@ -1,7 +1,23 @@
-import { closestCenter, DndContext, DragEndEvent, SensorDescriptor, SensorOptions } from '@dnd-kit/core'
-import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import {
+  closestCenter,
+  DndContext,
+  DragEndEvent,
+  SensorDescriptor,
+  SensorOptions,
+} from '@dnd-kit/core'
+import {
+  SortableContext,
+  useSortable,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
-import { Edit3, GripVertical, Loader2, MoreVertical, Trash2 } from 'lucide-react'
+import {
+  Edit3,
+  GripVertical,
+  Loader2,
+  MoreVertical,
+  Trash2,
+} from 'lucide-react'
 import * as React from 'react'
 import { defaultPhysicalSettingField } from '../../settingFields'
 import { MasterRdsEntity } from '../../../../types/MasterRdsEntity'
@@ -9,7 +25,14 @@ import { SettingAttrFields } from '../../../../types'
 import { formatDate } from '../../../../lib/utils/datetime'
 import { cn } from '../../../../lib/utils'
 import { Button } from '../../../../components/ui/button'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../../../components/ui/table'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '../../../../components/ui/table'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,8 +40,21 @@ import {
   DropdownMenuTrigger,
 } from '../../../../components/ui/dropdown-menu'
 
-export function SortableRow({ id, children }: { id: string; children: React.ReactNode }) {
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id })
+export function SortableRow({
+  id,
+  children,
+}: {
+  id: string
+  children: React.ReactNode
+}) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id })
   const style: React.CSSProperties = {
     transform: CSS.Transform.toString(transform),
     transition,
@@ -116,7 +152,11 @@ export default function FieldsTable({
       dataIndex: 'physicalName',
       headClassName: ' sticky left-[52px] bg-emphasis w-[170px]',
       className: 'sticky w-[170px] left-[52px]  word-wrap bg-background',
-      render: (record: any) => <div className="text-center truncate w-[150px]">{record.physicalName}</div>,
+      render: (record: any) => (
+        <div className="text-center truncate w-[150px]">
+          {record.physicalName}
+        </div>
+      ),
     },
     {
       title: '名称',
@@ -125,13 +165,19 @@ export default function FieldsTable({
         "sticky w-[170px] left-[222px] bg-emphasis after:content-[''] after:w-[30px] after:block after:absolute after:top-0 after:bottom-0 after:right-0 after:[box-shadow:inset_10px_0_8px_-8px_rgba(5,5,5,0.06)] after:translate-x-[100%]",
       className:
         "sticky w-[170px] left-[222px]  word-wrap pr-[30px] bg-background after:content-[''] after:w-[30px] after:block after:absolute after:top-0 after:bottom-0 after:right-0 after:[box-shadow:inset_10px_0_8px_-8px_rgba(5,5,5,0.06)] after:translate-x-[100%]",
-      render: (record: any) => <div className="text-center truncate w-[150px]">{record.name}</div>,
+      render: (record: any) => (
+        <div className="text-center truncate w-[150px]">{record.name}</div>
+      ),
     },
 
     {
       title: '説明',
       dataIndex: 'description',
-      render: (record: any) => <div className="text-center truncate max-w-[150px]">{record.description}</div>,
+      render: (record: any) => (
+        <div className="text-center truncate max-w-[150px]">
+          {record.description}
+        </div>
+      ),
     },
     {
       title: 'データ型',
@@ -170,7 +216,13 @@ export default function FieldsTable({
       ),
       render: (record: any) => (
         <div className="text-center">
-          {record?.length ? record.length : record?.min && record?.max ? `${record?.min} ~ ${record?.max}` : <></>}
+          {record?.length ? (
+            record.length
+          ) : record?.min && record?.max ? (
+            `${record?.min} ~ ${record?.max}`
+          ) : (
+            <></>
+          )}
         </div>
       ),
     },
@@ -208,47 +260,66 @@ export default function FieldsTable({
 
   return (
     <div className="w-full">
-      <Table className="bg-white">
-        <TableHeader>
-          <TableRow className="bg-emphasis hover:bg-emphasis">
-            <TableHead className="font-bold whitespace-nowrap !text-white text-center w-[52px] sticky left-0 bg-emphasis" />
-            {columns.map((col, index) => (
-              <TableHead
-                key={index}
-                className={cn('font-bold whitespace-nowrap !text-white', `text-${col.align}`, `${col.headClassName}`)}
-              >
-                {col.title}
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+      >
+        <Table className="bg-white">
+          <TableHeader>
+            <TableRow className="bg-emphasis hover:bg-emphasis">
+              <TableHead className="font-bold whitespace-nowrap !text-white text-center w-[52px] sticky left-0 bg-emphasis" />
+              {columns.map((col, index) => (
+                <TableHead
+                  key={index}
+                  className={cn(
+                    'font-bold whitespace-nowrap !text-white',
+                    `text-${col.align}`,
+                    `${col.headClassName}`
+                  )}
+                >
+                  {col.title}
+                </TableHead>
+              ))}
+              <TableHead className="text-white font-bold text-center whitespace-nowrap w-[52px] sticky right-0 bg-emphasis  after:content-[''] after:w-[30px] after:block after:absolute after:top-0 after:bottom-0 after:left-0 after:[box-shadow:inset_-10px_0_8px_-8px_rgba(5,5,5,0.06)] after:translate-x-[-100%] ">
+                アクション
               </TableHead>
-            ))}
-            <TableHead className="text-white font-bold text-center whitespace-nowrap w-[52px] sticky right-0 bg-emphasis  after:content-[''] after:w-[30px] after:block after:absolute after:top-0 after:bottom-0 after:left-0 after:[box-shadow:inset_-10px_0_8px_-8px_rgba(5,5,5,0.06)] after:translate-x-[-100%] ">
-              アクション
-            </TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {isFetching ? (
-            <TableRow>
-              <TableCell colSpan={14}>
-                <div className="flex justify-center">
-                  <Loader2 size={36} />
-                </div>
-              </TableCell>
             </TableRow>
-          ) : !data || !data.length ? (
-            <TableRow>
-              <TableCell colSpan={14}>
-                <div className="text-center">項目を追加するには、「項目追加」ボタンを押してください。</div>
-              </TableCell>
-            </TableRow>
-          ) : (
-            <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-              <SortableContext items={data.map((item) => item.name)} strategy={verticalListSortingStrategy}>
+          </TableHeader>
+          <TableBody>
+            {isFetching ? (
+              <TableRow>
+                <TableCell colSpan={14}>
+                  <div className="flex justify-center">
+                    <Loader2 size={36} />
+                  </div>
+                </TableCell>
+              </TableRow>
+            ) : !data || !data.length ? (
+              <TableRow>
+                <TableCell colSpan={14}>
+                  <div className="text-center">
+                    項目を追加するには、「項目追加」ボタンを押してください。
+                  </div>
+                </TableCell>
+              </TableRow>
+            ) : (
+              <SortableContext
+                items={data.map((item) => item.name)}
+                strategy={verticalListSortingStrategy}
+              >
                 {data.map((item, index) => (
                   <SortableRow id={item.name} key={item.name}>
                     {disabled ? (
                       <TableCell className="w-[48px] sticky left-0 bg-background">
                         <div>
-                          <Button size="icon" variant="ghost" type="button" className="w-8 h-8 " disabled={disabled}>
+                          <Button
+                            size="icon"
+                            variant="ghost"
+                            type="button"
+                            className="w-8 h-8 "
+                            disabled={disabled}
+                          >
                             <GripVertical className="w-4 h-4" />
                           </Button>
                         </div>
@@ -256,21 +327,44 @@ export default function FieldsTable({
                     ) : (
                       <TableCell className="w-[48px] sticky left-0 bg-background">
                         <div className="cursor-grab" data-drag-handle>
-                          <Button size="icon" variant="ghost" type="button" className="w-8 h-8 " disabled={disabled}>
+                          <Button
+                            size="icon"
+                            variant="ghost"
+                            type="button"
+                            className="w-8 h-8 "
+                            disabled={disabled}
+                          >
                             <GripVertical className="w-4 h-4" />
                           </Button>
                         </div>
                       </TableCell>
                     )}
-                    {columns.map(({ dataIndex, className, align, render }, colIndex) => (
-                      <TableCell className={cn(`text-${align}`, className)} key={colIndex}>
-                        {render ? render(item) : dataIndex ? item[dataIndex]?.toString() : <></>}
-                      </TableCell>
-                    ))}
+                    {columns.map(
+                      ({ dataIndex, className, align, render }, colIndex) => (
+                        <TableCell
+                          className={cn(`text-${align}`, className)}
+                          key={colIndex}
+                        >
+                          {render ? (
+                            render(item)
+                          ) : dataIndex ? (
+                            item[dataIndex]?.toString()
+                          ) : (
+                            <></>
+                          )}
+                        </TableCell>
+                      )
+                    )}
                     <TableCell className="sticky right-0 bg-white after:content-[''] after:w-[30px] after:block after:absolute after:top-0 after:bottom-0 after:left-0 after:[box-shadow:inset_-10px_0_8px_-8px_rgba(5,5,5,0.06)] after:translate-x-[-100%] flex justify-center">
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <Button size="icon" variant="ghost" type="button" className="w-8 h-8 " disabled={disabled}>
+                          <Button
+                            size="icon"
+                            variant="ghost"
+                            type="button"
+                            className="w-8 h-8 "
+                            disabled={disabled}
+                          >
                             <MoreVertical className="w-4 h-4" />
                           </Button>
                         </DropdownMenuTrigger>
@@ -282,7 +376,9 @@ export default function FieldsTable({
                             <Edit3 className="mr-2 h-4 w-4 text-muted-foreground" />
                             編集
                           </DropdownMenuItem>
-                          {!defaultPhysicalSettingField.includes(item.physicalName) && (
+                          {!defaultPhysicalSettingField.includes(
+                            item.physicalName
+                          ) && (
                             <DropdownMenuItem
                               className="text-danger hover:bg-[hsl(var(--accent))] hover:cursor-pointer"
                               onClick={() => onDeletedField(index)}
@@ -297,10 +393,10 @@ export default function FieldsTable({
                   </SortableRow>
                 ))}
               </SortableContext>
-            </DndContext>
-          )}
-        </TableBody>
-      </Table>
+            )}
+          </TableBody>
+        </Table>
+      </DndContext>
     </div>
   )
 }

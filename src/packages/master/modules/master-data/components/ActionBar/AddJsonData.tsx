@@ -190,7 +190,7 @@ export default function AddJsonData({
     try {
       res = (
         await httpClient.post<DataSettingDataEntity[]>(
-          API_URLS.DATA_BULK_UPDATE_API_URL,
+          API_URLS.DATA.CREATE_BULK,
           {
             items: data,
           }

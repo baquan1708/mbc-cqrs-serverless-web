@@ -51,9 +51,9 @@ export default function DeleteButton({
     setSubmitting(true)
     const res = (
       await httpClient.delete<DataSettingDataEntity>(
-        `${API_URLS.DATA_API_URL}/${encodeURIComponent(
-          deletedItem.pk
-        )}/${encodeURIComponent(deletedItem.sk)}`
+        `${API_URLS.DATA.DELETE}/${encodeURIComponent(
+          `${deletedItem.pk}#${deletedItem.sk}`
+        )}`
       )
     ).data
 
