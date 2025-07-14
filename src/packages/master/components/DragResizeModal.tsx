@@ -75,7 +75,7 @@ function Window({ children, name, className, ...props }: any) {
       nodeRef={nodeRef}
       cancel=".react-resizable-handle, .jsoneditor-react-container"
       defaultClassName="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-move z-[1000]"
-      // positionOffset={{ x: '-50%', y: '-50%' }}
+      positionOffset={{ x: '-50%', y: '-50%' }}
     >
       <div style={style} ref={nodeRef}>
         <ResizableBox

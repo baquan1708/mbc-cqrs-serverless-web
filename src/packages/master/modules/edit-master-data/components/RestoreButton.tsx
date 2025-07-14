@@ -47,8 +47,8 @@ export default function RestoreButton({
     const res = (
       await httpClient.put<DataSettingDataEntity>(
         `${API_URLS.DATA_API_URL}/${encodeURIComponent(
-          restoreItem.pk
-        )}/${encodeURIComponent(restoreItem.sk)}`,
+          `${restoreItem.pk}#${restoreItem.sk}`
+        )}`,
         {
           isDeleted: false,
         }
@@ -68,7 +68,7 @@ export default function RestoreButton({
   }
 
   return (
- <ConfirmButton
+    <ConfirmButton
       size="default"
       triggerBtnText="復旧"
       title="復旧してもよろしいですか？"

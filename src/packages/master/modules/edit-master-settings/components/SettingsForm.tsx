@@ -175,8 +175,8 @@ export default function SettingsForm({
         res = (
           await httpClient.put<SettingDataEntity>(
             `${API_URLS.SETTINGS_API_URL}/${encodeURIComponent(
-              editedData.pk
-            )}/${encodeURIComponent(editedData.sk)}`,
+              `${editedData.pk}#${editedData.sk}`
+            )}`,
             dto
           )
         ).data

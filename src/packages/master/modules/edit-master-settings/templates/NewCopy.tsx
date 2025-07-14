@@ -157,8 +157,8 @@ export default function NewCopyMasterSettings() {
       try {
         const settingRes = await httpClient.get<SettingDataEntity>(
           `${API_URLS.SETTINGS_API_URL}/${encodeURIComponent(
-            params.pk!
-          )}/${encodeURIComponent(params.sk!)}`
+            `${params.pk!}#${params.sk!}`
+          )}`
         )
         setCurrentSetting(settingRes.data)
 

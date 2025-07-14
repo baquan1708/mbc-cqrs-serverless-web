@@ -1,6 +1,6 @@
 'use client'
 
-import 'mbc-cqrs-serverless-web/styles.css'
+import '../../dist/styles.css'
 import './custom-style.css'
 import { Inter as FontSans } from 'next/font/google'
 import React, { Suspense, useMemo, useState } from 'react'
@@ -9,7 +9,6 @@ import axios from 'axios'
 import { cn } from '../packages/master/lib/utils'
 import { Toaster } from '../packages/master/components/ui/toaster'
 import Loading from './loading'
-import { AppProviders } from 'mbc-cqrs-serverless-web'
 import TestUrlProvider from './TestUrlProvider'
 
 import { Input } from '../packages/master/components/ui/input'
@@ -22,6 +21,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../packages/master/components/ui/select'
+import dynamic from 'next/dynamic'
+
+const AppProviders = dynamic(
+  () => import('mbc-cqrs-serverless-web').then((mod) => mod.AppProviders),
+  { ssr: false }
+)
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -89,7 +94,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     try {
       // 1. Make the function async to use await.
       // 2. Call the health check endpoint.
-      await validationClient.get(HEALTH_API_URL)
+      await validationClient.get('/')
 
       // 3. If the call succeeds (doesn't throw an error), the token is valid.
       setIsSubmitted(true)

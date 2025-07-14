@@ -273,9 +273,7 @@ export default function MasterData() {
         const sk = `${parts[2]}#${parts.slice(3).join('#')}`
 
         const { data } = await httpClient.get<SettingDataEntity>(
-          `${API_URLS.SETTINGS_API_URL}/${encodeURIComponent(
-            pk!
-          )}/${encodeURIComponent(sk!)}`
+          `${API_URLS.SETTINGS_API_URL}/${encodeURIComponent(`${pk!}#${sk!}`)}`
         )
         setCurrentSetting(data)
       } catch (error) {

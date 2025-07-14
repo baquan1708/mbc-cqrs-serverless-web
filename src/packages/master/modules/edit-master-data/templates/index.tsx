@@ -318,9 +318,7 @@ export default function EditMasterData() {
       const sk = `${parts[2]}#${parts.slice(3).join('#')}`
 
       const { data } = await httpClient.get<SettingDataEntity>(
-        `${API_URLS.SETTINGS_API_URL}/${encodeURIComponent(
-          pk!
-        )}/${encodeURIComponent(sk!)}`
+        `${API_URLS.SETTINGS_API_URL}/${encodeURIComponent(`${pk!}#${sk!}`)}`
       )
 
       setCurrentSetting(data)
@@ -332,9 +330,7 @@ export default function EditMasterData() {
   const fetchData = async () => {
     try {
       const { data } = await httpClient.get<DataSettingDataEntity>(
-        `${API_URLS.DATA_API_URL}/${encodeURIComponent(
-          pk
-        )}/${encodeURIComponent(sk)}`
+        `${API_URLS.DATA_API_URL}/${encodeURIComponent(`${pk}#${sk}`)}`
       )
       const formData = {
         settingCode: typeCode || '',
@@ -477,8 +473,8 @@ export default function EditMasterData() {
         } else {
           const { data } = await httpClient.get<DataSettingDataEntity>(
             `${API_URLS.DATA_API_URL}/${encodeURIComponent(
-              pk
-            )}/${encodeURIComponent(settingCodeField.dataFormat)}`
+              `${pk}#${settingCodeField.dataFormat}`
+            )}`
           )
           setFormatData(data)
         }
