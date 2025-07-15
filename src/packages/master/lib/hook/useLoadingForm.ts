@@ -7,8 +7,12 @@ import { useLoadingStore } from '../stores/hooks'
  * @returns
  */
 
-export function useLoadingForm<T>() {
-  const form = useForm<T>()
+import { FieldValues, UseFormProps } from 'react-hook-form'
+
+export function useLoadingForm<T extends FieldValues>(
+  props?: UseFormProps<T>
+) {
+  const form = useForm<T>(props)
   const {
     control,
     handleSubmit,

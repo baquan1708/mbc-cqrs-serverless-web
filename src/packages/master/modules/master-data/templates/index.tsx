@@ -85,7 +85,13 @@ export default function MasterData() {
     .includes('code')
 
   const { form, loading, loadingStore, control, handleSubmit, reset, errors } =
-    useLoadingForm<SearchPropsMasterData>()
+    useLoadingForm<SearchPropsMasterData>({
+      defaultValues: {
+        code: '',
+        keyword: '',
+        isDeleted: false,
+      },
+    })
   const { navigate } = useNavigation()
   /**
    * 検索処理
