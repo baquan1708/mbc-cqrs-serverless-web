@@ -1114,7 +1114,7 @@ export default function EditMasterData() {
         </form>
       </div>
 
-      <div className="bg-[#F4F5F7] pt-10 flex justify-center">
+      <div className="pt-10 flex justify-center">
         <BackButton onClickPrev={() => router.back()} />
       </div>
     </>

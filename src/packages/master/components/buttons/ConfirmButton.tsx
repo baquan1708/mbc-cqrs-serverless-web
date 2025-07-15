@@ -12,6 +12,7 @@ import {
   AlertDialogTitle,
 } from '../ui/alert-dialog'
 import { Button, buttonVariants } from '../ui/button'
+import { cn } from '../../lib/utils'
 
 interface Props {
   size?: 'default' | 'sm' | 'lg' | 'icon'
@@ -23,6 +24,7 @@ interface Props {
   onConfirm?: () => void
   className?: string
   disabled?: boolean
+  variant?: string
 }
 
 export default function ConfirmButton({
@@ -34,12 +36,13 @@ export default function ConfirmButton({
   loading,
   onConfirm,
   className,
-  disabled
+  disabled,
+  variant
 }: Props) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button disabled={disabled} className={className} type="button" size={size} loading={loading}>
+        <Button disabled={disabled} className={className} variant={variant as any} type="button" size={size} loading={loading}>
           {triggerBtnText}
         </Button>
       </AlertDialogTrigger>
@@ -49,7 +52,7 @@ export default function ConfirmButton({
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>{cancelText}</AlertDialogCancel>
-          <AlertDialogAction className={buttonVariants({ variant: 'destructive' })} onClick={onConfirm}>
+          <AlertDialogAction className={cn('mt-2', buttonVariants({ variant: 'destructive' }))} onClick={onConfirm}>
             {confirmText}
           </AlertDialogAction>
         </AlertDialogFooter>
