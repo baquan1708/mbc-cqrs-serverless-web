@@ -98,7 +98,13 @@ export default function NewCopyMasterSettings() {
     typeCodeId: parseAsString.withDefault(''),
   }
   const { form, loading, loadingStore, control, handleSubmit, reset, errors } =
-    useLoadingForm<SearchPropsMasterData>()
+    useLoadingForm<SearchPropsMasterData>({
+      defaultValues: {
+        code: '',
+        keyword: '',
+        isDeleted: false,
+      },
+    })
   const getData = async (data: SearchPropsMasterData) => {
     const props: PaginateProps = {
       ...data,

@@ -75,6 +75,7 @@ export default function RestoreButton({
       cancelText="キャンセル"
       confirmText="復旧"
       className="bg-success hover:bg-success/90 ml-auto mr-0"
+      variant='success'
       loading={submitting}
       onConfirm={handleRestore}
     />

@@ -77,7 +77,7 @@ export default function DeleteButton({
       cancelText="キャンセル"
       confirmText="削除"
       loading={submitting}
-      className="bg-danger"
+      variant='destructive'
       onConfirm={handleDelete}
     />
   )

@@ -45,7 +45,13 @@ export default function MasterSetting() {
   const httpClient = useHttpClient()
 
   const { loading, loadingStore, control, handleSubmit, reset, errors } =
-    useLoadingForm<SearchPropsMasterSetting>()
+    useLoadingForm<SearchPropsMasterSetting>({
+      defaultValues: {
+        code: '',
+        name: '',
+        keyword: '',
+      },
+    })
   const { navigate } = useNavigation()
   const form = useForm<SearchPropsMasterSetting>()
 
