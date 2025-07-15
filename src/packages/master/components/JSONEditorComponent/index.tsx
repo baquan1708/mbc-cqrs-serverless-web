@@ -21,45 +21,66 @@ const JSONEditorComponent: React.FC<JSONEditorComponentProps> = ({
   const containerRef = useRef<HTMLDivElement | null>(null)
   const editorRef = useRef<JSONEditor | null>(null)
 
+  // Use a ref to hold the latest callbacks to avoid re-running effects
+  const onChangeTextRef = useRef(onChangeText)
+  onChangeTextRef.current = onChangeText
+
+  const onErrorRef = useRef(onError)
+  onErrorRef.current = onError
+
+  // Initialize editor
   useEffect(() => {
     if (containerRef.current) {
       const options: JSONEditorOptions = {
-        mode: 'code',
+        mode: disabled ? 'view' : 'code',
         enableSort: false,
         enableTransform: false,
-        onChangeText: onChangeText,
+        onChangeText: (jsonString) => {
+          // Always call the latest callback
+          onChangeTextRef.current(jsonString)
+        },
         schema: schema,
-        onError: onError,
+        onError: (error) => {
+          // Always call the latest callback
+          onErrorRef.current?.(error)
+        },
       }
 
       editorRef.current = new JSONEditor(containerRef.current, options)
       editorRef.current.setText(text)
     }
 
-    // Cleanup function to destroy the editor instance
+    // Cleanup function to destroy the editor instance on unmount
     return () => {
       if (editorRef.current) {
         editorRef.current.destroy()
         editorRef.current = null
       }
     }
-  }, [schema, onError, onChangeText]) // Re-create the editor if these props change
+    // Run only once on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
+  // Update text when prop changes
   useEffect(() => {
-    if (editorRef.current) {
-      // Use a try-catch block to prevent errors when the text is not valid JSON
-      try {
-        const currentJson = editorRef.current.get()
-        if (JSON.stringify(currentJson) !== text) {
-          editorRef.current.setText(text)
-        }
-      } catch (error) {
-        // If the current text in the editor is not valid JSON,
-        // we might still want to force an update.
-        editorRef.current.setText(text)
-      }
+    if (editorRef.current && editorRef.current.getText() !== text) {
+      editorRef.current.setText(text)
     }
   }, [text])
+
+  // Update schema when prop changes
+  useEffect(() => {
+    if (editorRef.current && schema) {
+      editorRef.current.setSchema(schema)
+    }
+  }, [schema])
+
+  // Update disabled state when prop changes
+  useEffect(() => {
+    if (editorRef.current) {
+      editorRef.current.setMode(disabled ? 'view' : 'code')
+    }
+  }, [disabled])
 
   return (
     <div
