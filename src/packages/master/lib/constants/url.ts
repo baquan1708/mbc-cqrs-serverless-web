@@ -89,7 +89,7 @@ export const API_URLS = {
     CREATE: '/master-setting',
     CREATE_BULK: '/master-setting/bulk',
     UPDATE: '/master-setting',
-    DELETE: '/master-setting/delete',
+    DELETE: '/master-setting',
     CHECK_EXIST: '/master-setting/check-exist',
   },
   DATA: {
