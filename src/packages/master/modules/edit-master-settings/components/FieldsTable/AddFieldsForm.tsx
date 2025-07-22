@@ -345,13 +345,13 @@ export default function AddFieldsForm({
         disabled={disabled}
         type="button"
         onClick={onAdd}
-        className="w-full sm:w-fit"
+        className="w-fit"
       >
         <PlusIcon />
         項目追加
       </Button>
 
-      <DialogContent className="max-h-[85%] w-full max-w-none overflow-y-auto md:w-[90%] lg:w-[80%] xl:w-[60%]">
+      <DialogContent className="max-h-[85%] w-[90%] max-w-none overflow-y-auto lg:w-[80%] xl:w-[60%]">
         <DialogHeader>
           <DialogTitle>
             <div className="mt-1 text-center">項目追加</div>

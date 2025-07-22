@@ -17,17 +17,12 @@ export default function CustomFormItem({
   required?: boolean
 }) {
   return (
-    <FormItem
-      className={cn(
-        'grid w-full grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-[10px]',
-        className
-      )}
-    >
-      <FormLabel className="mt-2 max-h-10 font-semibold leading-5">
+    <FormItem className={cn('flex w-full flex-col gap-2', className)}>
+      <FormLabel className="font-semibold">
         <span>{label}</span>
         {required && <span className="ml-1 text-destructive">*</span>}
       </FormLabel>
-      <div className="relative col-span-2 flex-col">
+      <div className="relative flex-col">
         {children}
         <FormMessage className="mt-2 text-xs font-semibold" />
       </div>

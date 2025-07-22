@@ -363,21 +363,16 @@ export default function SettingsForm({
             <div className="flex items-end justify-start bg-emphasis p-4 text-xl font-bold text-white">
               <div>名称登録</div>
             </div>
-            <div className="grid grid-cols-1 gap-x-10 bg-background p-6 pb-10 md:grid-cols-2">
+            <div className="grid gap-x-10 bg-background p-6 pb-10 md:grid-cols-2">
               <FormField
                 control={form.control}
                 name="code"
                 render={({ field }) => (
-                  <CustomFormItem
-                    className="block"
-                    label="コード"
-                    required={true}
-                  >
+                  <CustomFormItem label="コード" required>
                     <FormControl>
                       <Input
                         {...field}
                         autoComplete="code"
-                        value={field.value}
                         className="focus-visible:ring-offset-0"
                         disabled={!!editedData}
                       />
@@ -385,16 +380,13 @@ export default function SettingsForm({
                   </CustomFormItem>
                 )}
               />
+
               <FormField
                 control={form.control}
                 name="name"
                 disabled={readOnly}
                 render={({ field }) => (
-                  <CustomFormItem
-                    className="block"
-                    label="名称"
-                    required={true}
-                  >
+                  <CustomFormItem label="名称" required>
                     <FormControl>
                       <Input
                         autoComplete="name"
@@ -405,15 +397,13 @@ export default function SettingsForm({
                   </CustomFormItem>
                 )}
               />
+
               <FormField
                 control={form.control}
                 name="description"
                 disabled={readOnly}
                 render={({ field }) => (
-                  <CustomFormItem
-                    className="col-span-2 col-start-1 lg:grid-cols-1"
-                    label="説明"
-                  >
+                  <CustomFormItem label="説明" className="md:col-span-2">
                     <FormControl>
                       <Textarea
                         autoComplete="description"
@@ -432,7 +422,7 @@ export default function SettingsForm({
                     disabled={readOnly}
                     render={({ field }) => (
                       <CustomFormItem
-                        className="mt-2 block"
+                        className="mt-2"
                         label="新規商工会議所作成時マスタ設定をコピー"
                       >
                         <FormControl>
@@ -452,7 +442,7 @@ export default function SettingsForm({
                     disabled={readOnly}
                     render={({ field }) => (
                       <CustomFormItem
-                        className="mt-2 block"
+                        className="mt-2"
                         label="新規商工会議所作成時マスタデータをコピー"
                       >
                         <FormControl>
@@ -469,12 +459,11 @@ export default function SettingsForm({
                 </>
               )}
             </div>
-
             <div className="flex items-end justify-start bg-emphasis p-4 text-xl font-bold text-white">
               <div>項目一覧</div>
             </div>
             <div className="bg-background p-6 pb-10">
-              <div className="mb-5 flex w-full">
+              <div className="mb-5 flex w-full items-start">
                 <AddFieldsForm
                   formatOptions={formatOptions}
                   disabled={readOnly}
