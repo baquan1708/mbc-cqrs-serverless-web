@@ -259,7 +259,7 @@ export default function NewCopyMasterSettings() {
     const selectionColumn: ColumnDef<MasterRdsEntity> = {
       id: 'select',
       header: ({ table }) => (
-        <div className="w-full flex justify-center items-center">
+        <div className="flex w-full items-center justify-center">
           <Checkbox
             checked={table.getIsAllPageRowsSelected()}
             onCheckedChange={(value) =>
@@ -270,7 +270,7 @@ export default function NewCopyMasterSettings() {
         </div>
       ),
       cell: ({ row }) => (
-        <div className="w-full flex justify-center items-center -mx-1">
+        <div className="-mx-1 flex w-full items-center justify-center">
           <Checkbox
             checked={row.getIsSelected()}
             onCheckedChange={(value) => row.toggleSelected(!!value)}
@@ -312,7 +312,7 @@ export default function NewCopyMasterSettings() {
           return {
             id: `attr-${item.physicalName}`,
             accessorFn: (row) => row.attributes?.[item.physicalName],
-            header: () => <div className="font-bold px-4">{item.name}</div>,
+            header: () => <div className="px-4 font-bold">{item.name}</div>,
             cell: ({ getValue }) => {
               const value = getValue()
               const dataType = item.dataType
@@ -374,7 +374,7 @@ export default function NewCopyMasterSettings() {
 
   // --- Render ---
   return (
-    <div className="p-5 space-y-6">
+    <div className="space-y-6 p-5">
       <Card>
         <CardHeader>
           <CardTitle>データのコピー先</CardTitle>
@@ -408,7 +408,7 @@ export default function NewCopyMasterSettings() {
                 selected={localChambersList}
                 onChange={setLocalChambersList}
                 placeholder="データのコピー先を選択してください"
-                className="w-full mt-3"
+                className="mt-3 w-full"
               />
             </div>
           )}
@@ -452,7 +452,7 @@ export default function NewCopyMasterSettings() {
 
       {copyMode === MasterCopyDto.copyType.DATA_ONLY && (
         <Card>
-          <CardContent className="pt-6 space-y-4">
+          <CardContent className="space-y-4 pt-6">
             <Form {...form}>
               <form
                 onSubmit={handleSubmit(
@@ -462,8 +462,8 @@ export default function NewCopyMasterSettings() {
                   //   () => scrollToError(errors)
                 )}
               >
-                <div className="flex-col flex w-fullitems-center justify-center  px-6 ">
-                  <div className="flex gap-10 w-full">
+                <div className="w-fullitems-center flex flex-col justify-center px-6">
+                  <div className="flex w-full gap-10">
                     <div className="flex w-fit flex-col gap-4">
                       <div className="lg:text-md flex h-10 items-center text-sm font-semibold">
                         コード
@@ -551,7 +551,7 @@ export default function NewCopyMasterSettings() {
         </Card>
       )}
 
-      <div className="flex justify-evenly mt-10">
+      <div className="mt-10 flex justify-evenly">
         <CommonButton
           className="min-w-[200px] shadow-[0px_4px_8px_#00000065]"
           variant="outline"

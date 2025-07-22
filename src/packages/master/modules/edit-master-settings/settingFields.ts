@@ -31,4 +31,6 @@ export const defaultSettingFields: SettingAttrFields[] = [
   },
 ]
 
-export const defaultPhysicalSettingField = defaultSettingFields.map((field) => field.physicalName)
+export const defaultPhysicalSettingField = defaultSettingFields.map(
+  (field) => field.physicalName
+)

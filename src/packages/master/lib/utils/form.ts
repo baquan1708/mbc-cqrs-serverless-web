@@ -1,6 +1,9 @@
 import { SorterResult } from 'antd/lib/table/interface'
 import { UseFormSetError } from 'react-hook-form'
-import { TimeoutException, UnauthorizedException } from '../../exceptions/exception'
+import {
+  TimeoutException,
+  UnauthorizedException,
+} from '../../exceptions/exception'
 import { ExceptionBase } from '../../exceptions/exception-base'
 import { ApiErrorCode } from '../constants/define'
 import { required } from './validation'
@@ -65,8 +68,10 @@ export async function handleApi<T>(
   params = Object.assign(
     {
       isThrowError: false,
-      timeoutMessage: '通信がタイムアウトしました。通信環境をご確認の上、再度お試しください。',
-      errorMessage: 'エラーが発生しました。何度もこのエラーが発生する場合、管理者にお問い合わせください。',
+      timeoutMessage:
+        '通信がタイムアウトしました。通信環境をご確認の上、再度お試しください。',
+      errorMessage:
+        'エラーが発生しました。何度もこのエラーが発生する場合、管理者にお問い合わせください。',
     },
     params ?? {}
   )
@@ -103,7 +108,12 @@ export async function handleApi<T>(
 
     const body = e?.getDetail()
     // バリデーションエラー発生時
-    if (!!body && !!body.error_code && body.error_code == ApiErrorCode.ValidationError && !!body.errors) {
+    if (
+      !!body &&
+      !!body.error_code &&
+      body.error_code == ApiErrorCode.ValidationError &&
+      !!body.errors
+    ) {
       for (const key in body.errors) {
         let error = body.errors[key]
         if (Array.isArray(error)) {
@@ -121,7 +131,9 @@ export async function handleApi<T>(
     }
     // 排他制御エラー時
     else if (e?.getHttpStatusCode() == 409) {
-      alert('編集していたデータは、別の利用者によって変更されました。\r\nページを更新し、再度編集してください。')
+      alert(
+        '編集していたデータは、別の利用者によって変更されました。\r\nページを更新し、再度編集してください。'
+      )
       return {
         result: false,
       }

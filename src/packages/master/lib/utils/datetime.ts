@@ -96,7 +96,9 @@ export function toJST(date: Date, isResetDate = false) {
     // Asia/Tokyo
     return date
   }
-  const ret = new Date(date.getTime() + (date.getTimezoneOffset() + 540) * 60 * 1000)
+  const ret = new Date(
+    date.getTime() + (date.getTimezoneOffset() + 540) * 60 * 1000
+  )
   if (isResetDate) {
     ret.setHours(0, 0, 0, 0)
   }
@@ -154,7 +156,10 @@ function getTimezoneOffset(date: Date) {
  * @param date
  * @returns
  */
-export function getYYYYMMDD_HHMMSS(date: Date | string | null, time?: string | null): string {
+export function getYYYYMMDD_HHMMSS(
+  date: Date | string | null,
+  time?: string | null
+): string {
   if (typeof date == 'string') {
     date = getDate(date as string, time)
   }
@@ -177,7 +182,10 @@ export function getYYYYMMDD_HHMMSS(date: Date | string | null, time?: string | n
  * @param time
  * @returns
  */
-export function getDate(date: Date | string | null, time?: string | null): Date | null {
+export function getDate(
+  date: Date | string | null,
+  time?: string | null
+): Date | null {
   if (date == null || date == '') {
     return null
   }
@@ -192,7 +200,14 @@ export function getDate(date: Date | string | null, time?: string | null): Date 
       const hour = Number(time.substring(0, 2))
       const minute = Number(time.substring(2, 4))
       const second = Number(time.substring(4, 6))
-      return new Date(d.getFullYear(), d.getMonth(), d.getDate(), hour, minute, second)
+      return new Date(
+        d.getFullYear(),
+        d.getMonth(),
+        d.getDate(),
+        hour,
+        minute,
+        second
+      )
     }
     return d
   }

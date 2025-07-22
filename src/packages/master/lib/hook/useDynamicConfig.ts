@@ -26,9 +26,7 @@ export const useDynamicConfig = <T>(
       const pk = `${MASTER_DATA_PREFIX}${tenantCode}`
       const sk = `${SYSTEM_SETTING_PREFIX}${configKey}`
 
-      const response: any = await httpClient.get(
-        `/master-data/${pk}/${sk}`
-      )
+      const response: any = await httpClient.get(`/master-data/${pk}/${sk}`)
 
       const valueString = response.attributes?.value || `{}`
       const configValue = JSON.parse(valueString)

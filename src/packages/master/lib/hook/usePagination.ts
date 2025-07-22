@@ -23,7 +23,7 @@ import { useLoadingStore } from '../stores/hooks'
 type Props<
   TRecord,
   TSearchProps extends SearchPropsBase,
-  TPaginate extends Paginate<TRecord>
+  TPaginate extends Paginate<TRecord>,
 > = {
   searchPropDefinitions: UseQueryStatesKeysMap<TSearchProps>
   getData?: (queries: TSearchProps) => Promise<TPaginate>
@@ -42,7 +42,7 @@ type Props<
 export function usePagination<
   TRecord,
   TSearchProps extends SearchPropsBase,
-  TPaginate extends Paginate<TRecord>
+  TPaginate extends Paginate<TRecord>,
 >({
   isSearchInit = true,
   searchPropDefinitions: _searchPropDefinitions,

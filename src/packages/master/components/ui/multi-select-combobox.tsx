@@ -3,7 +3,14 @@
 import * as React from 'react'
 import { Check, ChevronsUpDown, Inbox, X } from 'lucide-react'
 import { Button } from './button'
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from './command'
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from './command'
 import { Popover, PopoverContent, PopoverTrigger } from './popover'
 import { Badge } from './badge'
 import { cn } from '../../lib/utils'
@@ -31,7 +38,9 @@ export function MultiSelectCombobox({
   const [open, setOpen] = React.useState(false)
 
   const handleSelect = (value: string) => {
-    const newSelected = selected.includes(value) ? selected.filter((item) => item !== value) : [...selected, value]
+    const newSelected = selected.includes(value)
+      ? selected.filter((item) => item !== value)
+      : [...selected, value]
     onChange(newSelected)
   }
 
@@ -46,9 +55,9 @@ export function MultiSelectCombobox({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={cn('w-full justify-between h-auto', className)}
+          className={cn('h-auto w-full justify-between', className)}
         >
-          <div className="flex gap-1 flex-wrap">
+          <div className="flex flex-wrap gap-1">
             {selectedLabels.length > 0 ? (
               selectedLabels.map((label) => (
                 <Badge key={label} variant="secondary" className="mr-1">
@@ -56,7 +65,9 @@ export function MultiSelectCombobox({
                 </Badge>
               ))
             ) : (
-              <span className="text-muted-foreground font-normal">{placeholder}</span>
+              <span className="font-normal text-muted-foreground">
+                {placeholder}
+              </span>
             )}
           </div>
           <ChevronsUpDown className="h-4 w-4 shrink-0 opacity-50" />
@@ -81,7 +92,12 @@ export function MultiSelectCombobox({
                     value={`${option.label} ${option.value}`}
                     onSelect={() => handleSelect(option.value)}
                   >
-                    <Check className={cn('mr-2 h-4 w-4', isSelected ? 'opacity-100' : 'opacity-0')} />
+                    <Check
+                      className={cn(
+                        'mr-2 h-4 w-4',
+                        isSelected ? 'opacity-100' : 'opacity-0'
+                      )}
+                    />
                     {option.label}
                   </CommandItem>
                 )

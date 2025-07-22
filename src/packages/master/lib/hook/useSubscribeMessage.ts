@@ -1,11 +1,18 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useIsomorphicLayoutEffect } from 'usehooks-ts'
 
-import { ActionEnum, CommandStatusContent, DecodedMessage, subscribeMessage } from '../../appsync'
+import {
+  ActionEnum,
+  CommandStatusContent,
+  DecodedMessage,
+  subscribeMessage,
+} from '../../appsync'
 import { useToast } from '../../components/ui/use-toast'
 import { useApolloClient } from '../../provider'
 
-export type CommandDoneCallback = (msg: DecodedMessage | null) => Promise<void> | void
+export type CommandDoneCallback = (
+  msg: DecodedMessage | null
+) => Promise<void> | void
 
 export function useSubscribeCommandStatus(
   xTenantCode: string,

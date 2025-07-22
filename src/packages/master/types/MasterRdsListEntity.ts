@@ -2,9 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { MasterRdsEntity } from './MasterRdsEntity';
+import type { MasterRdsEntity } from './MasterRdsEntity'
 export type MasterRdsListEntity = {
-  total?: number;
-  items: Array<MasterRdsEntity>;
-};
-
+  total?: number
+  items: Array<MasterRdsEntity>
+}

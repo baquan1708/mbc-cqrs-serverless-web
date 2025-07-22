@@ -25,7 +25,11 @@ export default function FormSubmitButton({
   return (
     <Button
       type="submit"
-      disabled={disabled || Object.keys(formState.errors).length > 0 || (!disableDirty && !formState.isDirty)}
+      disabled={
+        disabled ||
+        Object.keys(formState.errors).length > 0 ||
+        (!disableDirty && !formState.isDirty)
+      }
       loading={loading || formState.isSubmitting}
       className={className}
     >

@@ -15,10 +15,10 @@ export default function Page() {
   return (
     <main className="flex min-h-screen w-full items-center justify-center">
       <div className="text-center">
-        <h1 className="text-4xl font-bold tracking-tight mb-4">
+        <h1 className="mb-4 text-4xl font-bold tracking-tight">
           Welcome Back!
         </h1>
-        <p className="text-lg text-muted-foreground mb-8">
+        <p className="mb-8 text-lg text-muted-foreground">
           You have successfully logged in and can now manage your application.
         </p>
 

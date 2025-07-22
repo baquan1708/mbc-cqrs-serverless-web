@@ -6,12 +6,12 @@ export type DataCopyOptionDto = {
   /**
    * Whether to copy all master_data or only specific ones
    */
-  mode: DataCopyOptionDto.mode;
+  mode: DataCopyOptionDto.mode
   /**
    * Required only if mode is PARTIAL. List of master_data IDs to copy.
    */
-  id?: Array<string>;
-};
+  id?: Array<string>
+}
 export namespace DataCopyOptionDto {
   /**
    * Whether to copy all master_data or only specific ones
@@ -21,4 +21,3 @@ export namespace DataCopyOptionDto {
     PARTIAL = 'PARTIAL',
   }
 }
-

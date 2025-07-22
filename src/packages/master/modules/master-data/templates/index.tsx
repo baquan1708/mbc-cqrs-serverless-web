@@ -220,7 +220,7 @@ export default function MasterData() {
             // Use dot notation for nested attributes.
             // Fallback to a custom accessor function if the physicalName might contain special characters.
             accessorFn: (row) => row.attributes?.[item.physicalName],
-            header: () => <div className="font-bold px-4">{item.name}</div>,
+            header: () => <div className="px-4 font-bold">{item.name}</div>,
             cell: ({ getValue }) => {
               const value = getValue()
               const dataType = item.dataType
@@ -324,37 +324,37 @@ export default function MasterData() {
           {searchProps.typeCode && (
             <AccordionItem
               value={AccordionValue.SETTING}
-              className="border-none card shadow-sm"
+              className="card border-none shadow-sm"
             >
-              <AccordionTrigger className="bg-emphasis w-full overflow-hidden text-ellipsis text-white text-lg py-3 px-6 focus:!bg-emphasis focus:!outline-0 focus:!text-white">
+              <AccordionTrigger className="w-full overflow-hidden text-ellipsis bg-emphasis px-6 py-3 text-lg text-white focus:!bg-emphasis focus:!text-white focus:!outline-0">
                 {`${currentSetting?.code}:${currentSetting.name} 設定情報`}
               </AccordionTrigger>
               <AccordionContent className="flex justify-center">
-                <div className="flex-col flex w-[85%] items-center justify-center px-6 py-2 ">
-                  <div className="w-full md:w-[90%] lg:w-[85%] pb-3">
-                    <table className="w-full block border-collapse">
-                      <tbody className="w-full block">
-                        <tr className="w-full block border-b border-foreground/80">
-                          <th className=" inline-block w-[4rem] py-2 text-left text-sm font-semibold lg:text-md">
+                <div className="flex w-[85%] flex-col items-center justify-center px-6 py-2">
+                  <div className="w-full pb-3 md:w-[90%] lg:w-[85%]">
+                    <table className="block w-full border-collapse">
+                      <tbody className="block w-full">
+                        <tr className="block w-full border-b border-foreground/80">
+                          <th className="lg:text-md inline-block w-[4rem] py-2 text-left text-sm font-semibold">
                             コード
                           </th>
-                          <td className=" inline-block w-[calc(100%-6rem)]  pl-8  py-2 text-sm lg:text-md">
+                          <td className="lg:text-md inline-block w-[calc(100%-6rem)] py-2 pl-8 text-sm">
                             {currentSetting?.code}
                           </td>
                         </tr>
-                        <tr className="w-full block border-b border-foreground/80">
-                          <th className=" inline-block w-[4rem] py-2 text-left text-sm font-semibold lg:text-md">
+                        <tr className="block w-full border-b border-foreground/80">
+                          <th className="lg:text-md inline-block w-[4rem] py-2 text-left text-sm font-semibold">
                             名称
                           </th>
-                          <td className=" inline-block w-[calc(100%-6rem)]  pl-8  py-2 text-sm lg:text-md">
+                          <td className="lg:text-md inline-block w-[calc(100%-6rem)] py-2 pl-8 text-sm">
                             {currentSetting?.name}
                           </td>
                         </tr>
-                        <tr className="w-full block border-b border-foreground/80">
-                          <th className=" inline-block w-[4rem] py-2 text-left text-sm font-semibold lg:text-md">
+                        <tr className="block w-full border-b border-foreground/80">
+                          <th className="lg:text-md inline-block w-[4rem] py-2 text-left text-sm font-semibold">
                             説明
                           </th>
-                          <td className=" inline-block w-[calc(100%-6rem)]  pl-8  py-2 text-sm lg:text-md">
+                          <td className="lg:text-md inline-block w-[calc(100%-6rem)] py-2 pl-8 text-sm">
                             {currentSetting?.attributes?.description}
                           </td>
                         </tr>
@@ -394,12 +394,12 @@ export default function MasterData() {
             // }}
 
             value={AccordionValue.DATA_SEARCH}
-            className="border-none card shadow-sm"
+            className="card border-none shadow-sm"
           >
-            <AccordionTrigger className="bg-emphasis text-white text-lg py-3 px-6 focus:!bg-emphasis focus:!outline-0 focus:!text-white">
+            <AccordionTrigger className="bg-emphasis px-6 py-3 text-lg text-white focus:!bg-emphasis focus:!text-white focus:!outline-0">
               データを検索する
             </AccordionTrigger>
-            <AccordionContent className="flex justify-center flex-col p-0">
+            <AccordionContent className="flex flex-col justify-center p-0">
               <div className="py-3">
                 <Form {...form}>
                   <form
@@ -407,8 +407,8 @@ export default function MasterData() {
                       onSubmitSearch(onValid)
                     })}
                   >
-                    <div className="w-full flex-col flex w-fullitems-center justify-center  px-3 ">
-                      <div className="flex gap-10 w-full">
+                    <div className="w-fullitems-center flex w-full flex-col justify-center px-3">
+                      <div className="flex w-full gap-10">
                         <div className="flex w-fit flex-col gap-4">
                           <div className="lg:text-md flex h-10 items-center text-sm font-semibold">
                             コード
@@ -474,14 +474,14 @@ export default function MasterData() {
           </AccordionItem>
           <AccordionItem
             value={AccordionValue.DATA_RESULT}
-            className="border-none card shadow-sm"
+            className="card border-none shadow-sm"
           >
-            <AccordionTrigger className="bg-emphasis text-white text-lg py-3 px-6 focus:!bg-emphasis focus:!outline-0 focus:!text-white">
+            <AccordionTrigger className="bg-emphasis px-6 py-3 text-lg text-white focus:!bg-emphasis focus:!text-white focus:!outline-0">
               データ一覧
             </AccordionTrigger>
-            <AccordionContent className="flex justify-center flex-col">
+            <AccordionContent className="flex flex-col justify-center">
               <>
-                <div className="my-1 px-3 flex gap-4 justify-end">
+                <div className="my-1 flex justify-end gap-4 px-3">
                   <Button
                     onClick={() =>
                       router.push(

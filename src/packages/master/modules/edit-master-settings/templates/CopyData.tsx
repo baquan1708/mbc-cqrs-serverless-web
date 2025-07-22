@@ -101,7 +101,7 @@ export default function CopyMasterSettings() {
         accessorKey: 'sk',
         cell: ({ row }) => (
           <Link
-            className="hover:text-[hsl(var(--primary))] text-[hsl(var(--primary))] hover:underline overflow-hidden text-ellipsis w-full block"
+            className="block w-full overflow-hidden text-ellipsis text-[hsl(var(--primary))] hover:text-[hsl(var(--primary))] hover:underline"
             href={`${urlProvider.getDetailedCopySettingPageUrl(
               `${encodeURIComponent(params.pk!)}/${encodeURIComponent(
                 params.sk!

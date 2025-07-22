@@ -40,8 +40,8 @@ function ModalContent({
     }
   }, [submitting, open])
   return (
-    <div className="flex flex-col w-full overflow-hidden">
-      <div className="mt-5 flex-1 mb-3">
+    <div className="flex w-full flex-col overflow-hidden">
+      <div className="mb-3 mt-5 flex-1">
         <JSONEditorComponent
           text={value}
           onChangeText={(json) => setValue(json)}

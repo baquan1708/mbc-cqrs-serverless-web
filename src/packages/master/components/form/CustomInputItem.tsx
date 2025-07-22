@@ -24,18 +24,18 @@ export default function CustomInputItem({
       {label && (
         <label
           className={cn(
-            'text-sm peer-disabled:cursor-not-allowed peer-disabled:opacity-70 font-semibold max-h-10 leading-5',
+            'max-h-10 text-sm font-semibold leading-5 peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
             {
               'text-[hsl(var(--destructive))]': error,
             }
           )}
         >
           {label}
-          {required && <span className="text-destructive ml-1">*</span>}
+          {required && <span className="ml-1 text-destructive">*</span>}
         </label>
       )}
 
-      <div className="flex-col relative col-span-2 mt-2">
+      <div className="relative col-span-2 mt-2 flex-col">
         {children}
         {description && (
           <p
@@ -49,7 +49,7 @@ export default function CustomInputItem({
         {error && (
           <p
             className={cn(
-              'text-[hsl(var(--destructive))] mt-2 font-semibold text-xs'
+              'mt-2 text-xs font-semibold text-[hsl(var(--destructive))]'
             )}
           >
             {error.message}

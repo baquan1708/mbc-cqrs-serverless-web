@@ -101,7 +101,7 @@ export const mapForm2Dto = (
         codeData.copy_master_setting_on_cci_created,
       copy_master_data_on_cci_created: codeData.copy_master_data_on_cci_created,
     },
-  } as Partial<SettingDataEntity>)
+  }) as Partial<SettingDataEntity>
 
 export const sampleSettingJson = JSON.stringify({
   code: '',

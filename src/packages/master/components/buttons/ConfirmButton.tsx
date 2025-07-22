@@ -37,12 +37,19 @@ export default function ConfirmButton({
   onConfirm,
   className,
   disabled,
-  variant
+  variant,
 }: Props) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button disabled={disabled} className={className} variant={variant as any} type="button" size={size} loading={loading}>
+        <Button
+          disabled={disabled}
+          className={className}
+          variant={variant as any}
+          type="button"
+          size={size}
+          loading={loading}
+        >
           {triggerBtnText}
         </Button>
       </AlertDialogTrigger>
@@ -52,7 +59,10 @@ export default function ConfirmButton({
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>{cancelText}</AlertDialogCancel>
-          <AlertDialogAction className={cn('mt-2', buttonVariants({ variant: 'destructive' }))} onClick={onConfirm}>
+          <AlertDialogAction
+            className={cn('mt-2', buttonVariants({ variant: 'destructive' }))}
+            onClick={onConfirm}
+          >
             {confirmText}
           </AlertDialogAction>
         </AlertDialogFooter>

@@ -19,16 +19,25 @@ export default function DatePicker({
   disabled?: boolean
 }) {
   const formattedValue =
-    value !== '' && typeof value === 'string' && !isNaN(Date.parse(value)) ? new Date(value) : undefined
+    value !== '' && typeof value === 'string' && !isNaN(Date.parse(value))
+      ? new Date(value)
+      : undefined
   return (
     <Popover modal>
       <PopoverTrigger asChild>
         <Button
           disabled={disabled}
           variant={'outline'}
-          className={cn('w-full pl-3 text-left font-normal', !value && 'text-[hsl(var(--muted-foreground))]')}
+          className={cn(
+            'w-full pl-3 text-left font-normal',
+            !value && 'text-[hsl(var(--muted-foreground))]'
+          )}
         >
-          {formattedValue ? format(formattedValue, 'yyyy/MM/dd') : <span>日時を選択してください</span>}
+          {formattedValue ? (
+            format(formattedValue, 'yyyy/MM/dd')
+          ) : (
+            <span>日時を選択してください</span>
+          )}
           <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -37,7 +46,9 @@ export default function DatePicker({
           disabled={disabled}
           mode="single"
           selected={formattedValue}
-          onSelect={(date) => onChange(date ? toISOStringWithTimezone(date) : undefined)}
+          onSelect={(date) =>
+            onChange(date ? toISOStringWithTimezone(date) : undefined)
+          }
           defaultMonth={formattedValue}
           initialFocus
           locale={ja}

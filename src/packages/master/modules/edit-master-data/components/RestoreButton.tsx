@@ -74,8 +74,8 @@ export default function RestoreButton({
       title="復旧してもよろしいですか？"
       cancelText="キャンセル"
       confirmText="復旧"
-      className="bg-success hover:bg-success/90 ml-auto mr-0"
-      variant='success'
+      className="ml-auto mr-0 bg-success hover:bg-success/90"
+      variant="success"
       loading={submitting}
       onConfirm={handleRestore}
     />

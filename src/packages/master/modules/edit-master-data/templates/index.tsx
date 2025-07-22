@@ -217,18 +217,15 @@ export default function EditMasterData() {
             //   format,
             // })
             const seqRes = (
-              await httpClient.post(
-                API_URLS.SEQUENCE.WITH_PROVIDED_SETTING,
-                {
-                  tenantCode: tenantCode,
-                  typeCode,
-                  rotateBy: GenerateFormattedSequenceDto.rotateBy.NONE,
-                  params: { code1: currentSetting.code },
-                  prefix: codeField['prefix'],
-                  postfix: codeField['postfix'],
-                  format,
-                }
-              )
+              await httpClient.post(API_URLS.SEQUENCE.WITH_PROVIDED_SETTING, {
+                tenantCode: tenantCode,
+                typeCode,
+                rotateBy: GenerateFormattedSequenceDto.rotateBy.NONE,
+                params: { code1: currentSetting.code },
+                prefix: codeField['prefix'],
+                postfix: codeField['postfix'],
+                format,
+              })
             ).data
             generatedCode = seqRes.formattedNo
           } else {
@@ -241,14 +238,17 @@ export default function EditMasterData() {
             //   postfix: codeField['postfix'],
             // })
             const seqRes = (
-              await httpClient.post(API_URLS.SEQUENCE.WITHOUT_PROVIDED_SETTING, {
-                tenantCode: tenantCode,
-                typeCode,
-                rotateBy: GenerateFormattedSequenceDto.rotateBy.NONE,
-                params: { code1: currentSetting.code },
-                prefix: codeField['prefix'],
-                postfix: codeField['postfix'],
-              })
+              await httpClient.post(
+                API_URLS.SEQUENCE.WITHOUT_PROVIDED_SETTING,
+                {
+                  tenantCode: tenantCode,
+                  typeCode,
+                  rotateBy: GenerateFormattedSequenceDto.rotateBy.NONE,
+                  params: { code1: currentSetting.code },
+                  prefix: codeField['prefix'],
+                  postfix: codeField['postfix'],
+                }
+              )
             ).data
             generatedCode = seqRes.formattedNo
           }
@@ -488,12 +488,9 @@ export default function EditMasterData() {
 
   return (
     <>
-      <div className="items-center flex-col gap-[50px]">
-        <form
-          className="w-full  bg-background "
-          onSubmit={handleSubmit(submit)}
-        >
-          <div className="p-4 bg-muted/50">
+      <div className="flex-col items-center gap-[50px]">
+        <form className="w-full bg-background" onSubmit={handleSubmit(submit)}>
+          <div className="bg-muted/50 p-4">
             {resData?.tenantCode === tenantCode || !isEdit ? (
               <div className="flex justify-between gap-4">
                 <div className="flex gap-4">
@@ -589,7 +586,7 @@ export default function EditMasterData() {
           </div>
 
           <div className="w-full p-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4 p-6 pt-2 pb-10">
+            <div className="grid grid-cols-1 gap-x-10 gap-y-4 p-6 pb-10 pt-2 md:grid-cols-2">
               {/* <CustomInputItem key={'settingCode'} label={'タイプコード'} required={true} error={errors.settingCode}>
                 <Controller
                   control={control}
@@ -859,7 +856,7 @@ export default function EditMasterData() {
                         'text-html',
                         'text-markdown',
                       ].includes(field.dataType)
-                        ? ' col-span-2'
+                        ? 'col-span-2'
                         : ''
                     }
                   >
@@ -1114,7 +1111,7 @@ export default function EditMasterData() {
         </form>
       </div>
 
-      <div className="pt-10 flex justify-center">
+      <div className="flex justify-center pt-10">
         <BackButton onClickPrev={() => router.back()} />
       </div>
     </>

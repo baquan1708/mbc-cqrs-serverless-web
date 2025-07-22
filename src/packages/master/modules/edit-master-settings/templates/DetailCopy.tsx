@@ -99,7 +99,7 @@ export default function DetailCopy() {
         header: 'テナントコード',
         accessorFn: (row) => row.input?.targetTenants?.[0],
         cell: ({ getValue }) => (
-          <div className="font-bold text-center">{getValue() as string}</div>
+          <div className="text-center font-bold">{getValue() as string}</div>
         ),
       },
       {

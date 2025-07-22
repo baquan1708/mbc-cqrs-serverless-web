@@ -153,7 +153,7 @@ export default function FieldsTable({
       headClassName: ' sticky left-[52px] bg-emphasis w-[170px]',
       className: 'sticky w-[170px] left-[52px]  word-wrap bg-background',
       render: (record: any) => (
-        <div className="text-center truncate w-[150px]">
+        <div className="w-[150px] truncate text-center">
           {record.physicalName}
         </div>
       ),
@@ -166,7 +166,7 @@ export default function FieldsTable({
       className:
         "sticky w-[170px] left-[222px]  word-wrap pr-[30px] bg-background after:content-[''] after:w-[30px] after:block after:absolute after:top-0 after:bottom-0 after:right-0 after:[box-shadow:inset_10px_0_8px_-8px_rgba(5,5,5,0.06)] after:translate-x-[100%]",
       render: (record: any) => (
-        <div className="text-center truncate w-[150px]">{record.name}</div>
+        <div className="w-[150px] truncate text-center">{record.name}</div>
       ),
     },
 
@@ -174,7 +174,7 @@ export default function FieldsTable({
       title: '説明',
       dataIndex: 'description',
       render: (record: any) => (
-        <div className="text-center truncate max-w-[150px]">
+        <div className="max-w-[150px] truncate text-center">
           {record.description}
         </div>
       ),
@@ -191,7 +191,7 @@ export default function FieldsTable({
       dataIndex: 'dataFormat',
       render: (record: any) => {
         return (
-          <div className="text-center text-nowrap whitespace-nowrap">
+          <div className="whitespace-nowrap text-nowrap text-center">
             {DataType[record?.dataType] === DataType.auto_number
               ? `${
                   formatOptions.find((el) => {
@@ -235,12 +235,12 @@ export default function FieldsTable({
       title: 'デフォルト値',
       dataIndex: 'defaultValue',
       render: (record: any) => (
-        <div className="text-center truncate max-w-[200px]">
+        <div className="max-w-[200px] truncate text-center">
           {record?.dataType === 'date'
             ? formatDate(record?.defaultValue)
             : record?.dataType === 'boolean'
-            ? `${record?.defaultValue}`
-            : record?.defaultValue}
+              ? `${record?.defaultValue}`
+              : record?.defaultValue}
         </div>
       ),
     },
@@ -268,12 +268,12 @@ export default function FieldsTable({
         <Table className="bg-white">
           <TableHeader>
             <TableRow className="bg-emphasis hover:bg-emphasis">
-              <TableHead className="font-bold whitespace-nowrap !text-white text-center w-[52px] sticky left-0 bg-emphasis" />
+              <TableHead className="sticky left-0 w-[52px] whitespace-nowrap bg-emphasis text-center font-bold !text-white" />
               {columns.map((col, index) => (
                 <TableHead
                   key={index}
                   className={cn(
-                    'font-bold whitespace-nowrap !text-white',
+                    'whitespace-nowrap font-bold !text-white',
                     `text-${col.align}`,
                     `${col.headClassName}`
                   )}
@@ -281,7 +281,7 @@ export default function FieldsTable({
                   {col.title}
                 </TableHead>
               ))}
-              <TableHead className="text-white font-bold text-center whitespace-nowrap w-[52px] sticky right-0 bg-emphasis  after:content-[''] after:w-[30px] after:block after:absolute after:top-0 after:bottom-0 after:left-0 after:[box-shadow:inset_-10px_0_8px_-8px_rgba(5,5,5,0.06)] after:translate-x-[-100%] ">
+              <TableHead className="sticky right-0 w-[52px] whitespace-nowrap bg-emphasis text-center font-bold text-white after:absolute after:bottom-0 after:left-0 after:top-0 after:block after:w-[30px] after:translate-x-[-100%] after:content-[''] after:[box-shadow:inset_-10px_0_8px_-8px_rgba(5,5,5,0.06)]">
                 アクション
               </TableHead>
             </TableRow>
@@ -311,30 +311,30 @@ export default function FieldsTable({
                 {data.map((item, index) => (
                   <SortableRow id={item.name} key={item.name}>
                     {disabled ? (
-                      <TableCell className="w-[48px] sticky left-0 bg-background">
+                      <TableCell className="sticky left-0 w-[48px] bg-background">
                         <div>
                           <Button
                             size="icon"
                             variant="ghost"
                             type="button"
-                            className="w-8 h-8 "
+                            className="h-8 w-8"
                             disabled={disabled}
                           >
-                            <GripVertical className="w-4 h-4" />
+                            <GripVertical className="h-4 w-4" />
                           </Button>
                         </div>
                       </TableCell>
                     ) : (
-                      <TableCell className="w-[48px] sticky left-0 bg-background">
+                      <TableCell className="sticky left-0 w-[48px] bg-background">
                         <div className="cursor-grab" data-drag-handle>
                           <Button
                             size="icon"
                             variant="ghost"
                             type="button"
-                            className="w-8 h-8 "
+                            className="h-8 w-8"
                             disabled={disabled}
                           >
-                            <GripVertical className="w-4 h-4" />
+                            <GripVertical className="h-4 w-4" />
                           </Button>
                         </div>
                       </TableCell>
@@ -355,22 +355,22 @@ export default function FieldsTable({
                         </TableCell>
                       )
                     )}
-                    <TableCell className="sticky right-0 bg-white after:content-[''] after:w-[30px] after:block after:absolute after:top-0 after:bottom-0 after:left-0 after:[box-shadow:inset_-10px_0_8px_-8px_rgba(5,5,5,0.06)] after:translate-x-[-100%] flex justify-center">
+                    <TableCell className="sticky right-0 flex justify-center bg-white after:absolute after:bottom-0 after:left-0 after:top-0 after:block after:w-[30px] after:translate-x-[-100%] after:content-[''] after:[box-shadow:inset_-10px_0_8px_-8px_rgba(5,5,5,0.06)]">
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                           <Button
                             size="icon"
                             variant="ghost"
                             type="button"
-                            className="w-8 h-8 "
+                            className="h-8 w-8"
                             disabled={disabled}
                           >
-                            <MoreVertical className="w-4 h-4" />
+                            <MoreVertical className="h-4 w-4" />
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent className="bg-white" align="end">
                           <DropdownMenuItem
-                            className="hover:bg-[hsl(var(--accent))] hover:cursor-pointer"
+                            className="hover:cursor-pointer hover:bg-[hsl(var(--accent))]"
                             onClick={() => onEditField(index)}
                           >
                             <Edit3 className="mr-2 h-4 w-4 text-muted-foreground" />
@@ -380,10 +380,10 @@ export default function FieldsTable({
                             item.physicalName
                           ) && (
                             <DropdownMenuItem
-                              className="text-danger hover:bg-[hsl(var(--accent))] hover:cursor-pointer"
+                              className="text-danger hover:cursor-pointer hover:bg-[hsl(var(--accent))]"
                               onClick={() => onDeletedField(index)}
                             >
-                              <Trash2 className="mr-2 h-4 w-4 text-danger" />
+                              <Trash2 className="text-danger mr-2 h-4 w-4" />
                               削除
                             </DropdownMenuItem>
                           )}

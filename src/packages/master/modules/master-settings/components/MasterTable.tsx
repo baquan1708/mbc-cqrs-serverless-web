@@ -28,17 +28,17 @@ export default function MasterTable({ data, isFetching, onDelete }: Props) {
       <TableHeader>
         <TableRow className="bg-[hsl(var(--muted))] hover:bg-[hsl(var(--muted))]">
           {user.tenantCode !== TENANT_SYSTEM_CODE && (
-            <TableHead className="font-bold text-center whitespace-nowrap w-[10%]">
+            <TableHead className="w-[10%] whitespace-nowrap text-center font-bold">
               私のもの
             </TableHead>
           )}
-          <TableHead className="font-bold whitespace-nowrap w-[10%]">
+          <TableHead className="w-[10%] whitespace-nowrap font-bold">
             コード
           </TableHead>
-          <TableHead className="font-bold whitespace-nowrap w-[15%]">
+          <TableHead className="w-[15%] whitespace-nowrap font-bold">
             名称
           </TableHead>
-          <TableHead className="font-bold whitespace-nowrap">説明</TableHead>
+          <TableHead className="whitespace-nowrap font-bold">説明</TableHead>
           {/* <TableHead className="font-bold whitespace-nowrap text-center w-10">アクション</TableHead> */}
         </TableRow>
       </TableHeader>
@@ -66,9 +66,9 @@ export default function MasterTable({ data, isFetching, onDelete }: Props) {
                     {item.tenantCode === user.tenantCode && '◯'}
                   </TableCell>
                 )}
-                <TableCell className=" max-w-40">
+                <TableCell className="max-w-40">
                   <Link
-                    className=" hover:text-[hsl(var(--primary))] text-[hsl(var(--primary))] overflow-hidden text-ellipsis w-full block"
+                    className="block w-full overflow-hidden text-ellipsis text-[hsl(var(--primary))] hover:text-[hsl(var(--primary))]"
                     href={`${
                       urlProvider.DATA_PAGE_URL
                     }?isTypeCodeFixed=1&typeCode=${encodeURIComponent(

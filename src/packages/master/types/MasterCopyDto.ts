@@ -2,25 +2,25 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { DataCopyOptionDto } from './DataCopyOptionDto';
+import type { DataCopyOptionDto } from './DataCopyOptionDto'
 export type MasterCopyDto = {
   /**
    * The ID of the master_setting to copy from
    */
-  masterSettingId: string;
+  masterSettingId: string
   /**
    * Target tenants as an array of tenant codes
    */
-  targetTenants: Array<string>;
+  targetTenants: Array<string>
   /**
    * What to copy: only setting, only data, or both
    */
-  copyType: MasterCopyDto.copyType;
+  copyType: MasterCopyDto.copyType
   /**
    * Options for data copy (required when copyType is DATA_ONLY or BOTH)
    */
-  dataCopyOption?: DataCopyOptionDto;
-};
+  dataCopyOption?: DataCopyOptionDto
+}
 export namespace MasterCopyDto {
   /**
    * What to copy: only setting, only data, or both
@@ -31,4 +31,3 @@ export namespace MasterCopyDto {
     BOTH = 'BOTH',
   }
 }
-

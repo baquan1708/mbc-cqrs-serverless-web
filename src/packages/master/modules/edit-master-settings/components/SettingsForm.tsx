@@ -277,10 +277,10 @@ export default function SettingsForm({
   if (isEdit && !editedData) return <LoadingOverlay isLoading />
 
   return (
-    <div className="w-full relative">
+    <div className="relative w-full">
       <Form {...form}>
         <form className="bg-background" onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="p-4 bg-muted/50">
+          <div className="bg-muted/50 p-4">
             {editedData?.tenantCode === user.tenantCode || !isEdit ? (
               <div className="flex justify-between gap-4">
                 {isEdit && readOnly ? (
@@ -360,10 +360,10 @@ export default function SettingsForm({
           </div>
 
           <div className="mt-4 px-4">
-            <div className="font-bold text-xl flex justify-start items-end bg-emphasis p-4 text-white">
+            <div className="flex items-end justify-start bg-emphasis p-4 text-xl font-bold text-white">
               <div>名称登録</div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 bg-background p-6 pb-10">
+            <div className="grid grid-cols-1 gap-x-10 bg-background p-6 pb-10 md:grid-cols-2">
               <FormField
                 control={form.control}
                 name="code"
@@ -411,7 +411,7 @@ export default function SettingsForm({
                 disabled={readOnly}
                 render={({ field }) => (
                   <CustomFormItem
-                    className="lg:grid-cols-1 col-start-1 col-span-2"
+                    className="col-span-2 col-start-1 lg:grid-cols-1"
                     label="説明"
                   >
                     <FormControl>
@@ -432,7 +432,7 @@ export default function SettingsForm({
                     disabled={readOnly}
                     render={({ field }) => (
                       <CustomFormItem
-                        className="block mt-2"
+                        className="mt-2 block"
                         label="新規商工会議所作成時マスタ設定をコピー"
                       >
                         <FormControl>
@@ -452,7 +452,7 @@ export default function SettingsForm({
                     disabled={readOnly}
                     render={({ field }) => (
                       <CustomFormItem
-                        className="block mt-2"
+                        className="mt-2 block"
                         label="新規商工会議所作成時マスタデータをコピー"
                       >
                         <FormControl>
@@ -470,11 +470,11 @@ export default function SettingsForm({
               )}
             </div>
 
-            <div className="font-bold text-xl flex justify-start items-end bg-emphasis p-4 text-white">
+            <div className="flex items-end justify-start bg-emphasis p-4 text-xl font-bold text-white">
               <div>項目一覧</div>
             </div>
             <div className="bg-background p-6 pb-10">
-              <div className="w-full mb-5 flex">
+              <div className="mb-5 flex w-full">
                 <AddFieldsForm
                   formatOptions={formatOptions}
                   disabled={readOnly}

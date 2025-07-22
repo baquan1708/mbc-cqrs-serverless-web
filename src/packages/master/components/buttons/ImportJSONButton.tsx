@@ -24,12 +24,22 @@ export default function ImportJSONButton({ disabled, onAdd }: Props) {
 
   return (
     <>
-      <Button variant="secondary" disabled={disabled} onClick={() => fileRef.current?.click()}>
+      <Button
+        variant="secondary"
+        disabled={disabled}
+        onClick={() => fileRef.current?.click()}
+      >
         <UploadIcon size={16} />
         <span>JSON読込</span>
       </Button>
 
-      <input type="file" ref={fileRef} className="hidden" accept={'.json'} onChange={handleChange} />
+      <input
+        type="file"
+        ref={fileRef}
+        className="hidden"
+        accept={'.json'}
+        onChange={handleChange}
+      />
     </>
   )
 }

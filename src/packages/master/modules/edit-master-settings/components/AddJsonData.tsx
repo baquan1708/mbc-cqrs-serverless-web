@@ -25,8 +25,8 @@ function ModalContent({
   onCloseModal?: () => void
 }) {
   return (
-    <div className="flex flex-col w-full overflow-hidden">
-      <div className="mt-5 flex-1 mb-3">
+    <div className="flex w-full flex-col overflow-hidden">
+      <div className="mb-3 mt-5 flex-1">
         <JSONEditorComponent
           text={value}
           onChangeText={(json) => setValue(json)}
@@ -103,14 +103,24 @@ function ModalContent({
                   isShowedOnList: { type: 'boolean' },
                   dataFormat: { type: 'string' },
                 },
-                required: ['physicalName', 'name', 'dataType', 'isRequired', 'isShowedOnList'],
+                required: [
+                  'physicalName',
+                  'name',
+                  'dataType',
+                  'isRequired',
+                  'isShowedOnList',
+                ],
               },
             },
           }}
         />
       </div>
       <div className="flex justify-end gap-2">
-        <Button type="button" variant="secondary" onClick={() => onCloseModal?.()}>
+        <Button
+          type="button"
+          variant="secondary"
+          onClick={() => onCloseModal?.()}
+        >
           キャンセル
         </Button>
         <ImportJSONButton onAdd={setValue} />

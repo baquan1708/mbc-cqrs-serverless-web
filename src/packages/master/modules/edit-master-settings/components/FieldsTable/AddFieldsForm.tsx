@@ -15,17 +15,40 @@ import CustomFormItem from '../../../../components/form/CustomFormItem'
 import { Textarea } from '../../../../components/ui/textarea'
 import { Switch } from '../../../../components/ui/switch'
 import { Input } from '../../../../components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../../../components/ui/select'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../../../../components/ui/select'
 import { Form, FormControl, FormField } from '../../../../components/ui/form'
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../../../../components/ui/dialog'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '../../../../components/ui/dialog'
 import { Button } from '../../../../components/ui/button'
 import { Editor } from '../field-editor'
 import JSONEditorComponent from '../../../../components/JSONEditorComponent'
 
 // === ENUMS ===
-const DataTypes = z.enum(['string', 'number', 'auto_number', 'json', 'date', 'text', 'boolean', 'array'], {
-  required_error: '入力は必須です。',
-})
+const DataTypes = z.enum(
+  [
+    'string',
+    'number',
+    'auto_number',
+    'json',
+    'date',
+    'text',
+    'boolean',
+    'array',
+  ],
+  {
+    required_error: '入力は必須です。',
+  }
+)
 
 const TextFormats = z.enum(['area', 'html', 'markdown'], {
   required_error: '入力は必須です。',
@@ -85,14 +108,20 @@ const baseSchema = z.object({
 
 // === REFINEMENTS ===
 export const fieldsSchema = baseSchema
-  .refine((data) => !(data.min && data.max) || Number(data.min) < Number(data.max), {
-    message: '最小値には最大値より小さい値を入力してください。',
-    path: ['min'],
-  })
-  .refine((data) => !(data.min && data.max) || Number(data.min) < Number(data.max), {
-    message: '最大値には最小値より大きい値を入力してください。',
-    path: ['max'],
-  })
+  .refine(
+    (data) => !(data.min && data.max) || Number(data.min) < Number(data.max),
+    {
+      message: '最小値には最大値より小さい値を入力してください。',
+      path: ['min'],
+    }
+  )
+  .refine(
+    (data) => !(data.min && data.max) || Number(data.min) < Number(data.max),
+    {
+      message: '最大値には最小値より大きい値を入力してください。',
+      path: ['max'],
+    }
+  )
   .refine(
     (data) => {
       if (data.dataType === 'number' && data.defaultValue) {
@@ -237,7 +266,9 @@ export default function AddFieldsForm({
 
   const [open, setOpen] = useState(false)
   const [mode, setMode] = useState<'add' | 'edit'>('add')
-  const isDefaultSettingField = defaultPhysicalSettingField.includes(form.watch('physicalName'))
+  const isDefaultSettingField = defaultPhysicalSettingField.includes(
+    form.watch('physicalName')
+  )
 
   const onAdd = () => {
     setMode('add')
@@ -262,7 +293,9 @@ export default function AddFieldsForm({
       formattedData.dataType = `${data.dataType}-${data.textFormat}`
     }
     if (data.dataType === 'auto_number') {
-      const settingData = formatOptions.find((option) => option.sk === formattedData.dataFormat)
+      const settingData = formatOptions.find(
+        (option) => option.sk === formattedData.dataFormat
+      )
       formattedData.formatCode = formattedData.dataFormat
       formattedData.dataFormat = settingData.attributes?.format
       formattedData.formatName = settingData.name
@@ -298,7 +331,8 @@ export default function AddFieldsForm({
   useEffect(() => {
     const dataType = form.getValues('dataType')
     const textFormat = form.getValues('textFormat')
-    const formattedDataType = dataType !== 'text' ? dataType : `${dataType}-${textFormat}`
+    const formattedDataType =
+      dataType !== 'text' ? dataType : `${dataType}-${textFormat}`
 
     if (editData && editData.data.dataType === formattedDataType) return
 
@@ -307,12 +341,17 @@ export default function AddFieldsForm({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <Button disabled={disabled} type="button" onClick={onAdd} className="w-full sm:w-fit">
+      <Button
+        disabled={disabled}
+        type="button"
+        onClick={onAdd}
+        className="w-full sm:w-fit"
+      >
         <PlusIcon />
         項目追加
       </Button>
 
-      <DialogContent className="w-full max-h-[85%] md:w-[90%] lg:w-[80%] xl:w-[60%] max-w-none overflow-y-auto">
+      <DialogContent className="max-h-[85%] w-full max-w-none overflow-y-auto md:w-[90%] lg:w-[80%] xl:w-[60%]">
         <DialogHeader>
           <DialogTitle>
             <div className="mt-1 text-center">項目追加</div>
@@ -327,7 +366,11 @@ export default function AddFieldsForm({
                   control={form.control}
                   name="physicalName"
                   render={({ field }) => (
-                    <CustomFormItem className="block" label="コード" required={true}>
+                    <CustomFormItem
+                      className="block"
+                      label="コード"
+                      required={true}
+                    >
                       <FormControl>
                         <Input
                           autoComplete="physicalName"
@@ -343,9 +386,17 @@ export default function AddFieldsForm({
                   control={form.control}
                   name="name"
                   render={({ field }) => (
-                    <CustomFormItem className="block" label="名称" required={true}>
+                    <CustomFormItem
+                      className="block"
+                      label="名称"
+                      required={true}
+                    >
                       <FormControl>
-                        <Input autoComplete="name" className="focus-visible:ring-offset-0" {...field} />
+                        <Input
+                          autoComplete="name"
+                          className="focus-visible:ring-offset-0"
+                          {...field}
+                        />
                       </FormControl>
                     </CustomFormItem>
                   )}
@@ -355,8 +406,15 @@ export default function AddFieldsForm({
                     control={form.control}
                     name="dataType"
                     render={({ field }) => (
-                      <CustomFormItem className="block" label="データ型" required={true}>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <CustomFormItem
+                        className="block"
+                        label="データ型"
+                        required={true}
+                      >
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
                           <FormControl>
                             <SelectTrigger>
                               <SelectValue />
@@ -382,7 +440,11 @@ export default function AddFieldsForm({
                     control={form.control}
                     name="dataType"
                     render={({ field }) => (
-                      <CustomFormItem className="block" label="データ型" required={true}>
+                      <CustomFormItem
+                        className="block"
+                        label="データ型"
+                        required={true}
+                      >
                         <Select
                           onValueChange={field.onChange}
                           defaultValue={field.value}
@@ -418,8 +480,15 @@ export default function AddFieldsForm({
                     control={form.control}
                     name="textFormat"
                     render={({ field }) => (
-                      <CustomFormItem className="block" label="エディタ" required={true}>
-                        <Select onValueChange={field.onChange} defaultValue={field.value || 'text'}>
+                      <CustomFormItem
+                        className="block"
+                        label="エディタ"
+                        required={true}
+                      >
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value || 'text'}
+                        >
                           <FormControl>
                             <SelectTrigger>
                               <SelectValue />
@@ -501,8 +570,15 @@ export default function AddFieldsForm({
                       control={form.control}
                       name="dataFormat"
                       render={({ field }) => (
-                        <CustomFormItem className="block" label="フォーマット" required={true}>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <CustomFormItem
+                          className="block"
+                          label="フォーマット"
+                          required={true}
+                        >
+                          <Select
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                          >
                             <FormControl>
                               <SelectTrigger>
                                 <SelectValue />
@@ -525,7 +601,11 @@ export default function AddFieldsForm({
                       render={({ field }) => (
                         <CustomFormItem className="block" label="接頭辞">
                           <FormControl>
-                            <Input autoComplete="prefix" className="focus-visible:ring-offset-0" {...field} />
+                            <Input
+                              autoComplete="prefix"
+                              className="focus-visible:ring-offset-0"
+                              {...field}
+                            />
                           </FormControl>
                         </CustomFormItem>
                       )}
@@ -536,7 +616,11 @@ export default function AddFieldsForm({
                       render={({ field }) => (
                         <CustomFormItem className="block" label="接尾辞">
                           <FormControl>
-                            <Input autoComplete="postfix" className="focus-visible:ring-offset-0" {...field} />
+                            <Input
+                              autoComplete="postfix"
+                              className="focus-visible:ring-offset-0"
+                              {...field}
+                            />
                           </FormControl>
                         </CustomFormItem>
                       )}
@@ -550,11 +634,18 @@ export default function AddFieldsForm({
                       control={form.control}
                       name="defaultValue"
                       render={({ field }) => (
-                        <CustomFormItem className="col-start-1 block" label="デフォルト値">
+                        <CustomFormItem
+                          className="col-start-1 block"
+                          label="デフォルト値"
+                        >
                           <FormControl>
                             <DatePicker
                               {...field}
-                              value={typeof field.value === 'boolean' ? String(field.value) : field.value ?? ''}
+                              value={
+                                typeof field.value === 'boolean'
+                                  ? String(field.value)
+                                  : (field.value ?? '')
+                              }
                             />
                           </FormControl>
                         </CustomFormItem>
@@ -566,11 +657,24 @@ export default function AddFieldsForm({
                         key="default-value-text-html"
                         control={form.control}
                         name="defaultValue"
-                        render={({ field: { ref: _, value, onChange: _onChange, ...others } }) => {
+                        render={({
+                          field: {
+                            ref: _,
+                            value,
+                            onChange: _onChange,
+                            ...others
+                          },
+                        }) => {
                           return (
-                            <CustomFormItem className="col-start-1 col-span-2 block" label="デフォルト値">
+                            <CustomFormItem
+                              className="col-span-2 col-start-1 block"
+                              label="デフォルト値"
+                            >
                               <FormControl>
-                                <Editor value={value as string} onChangeController={_onChange} />
+                                <Editor
+                                  value={value as string}
+                                  onChangeController={_onChange}
+                                />
                               </FormControl>
                             </CustomFormItem>
                           )
@@ -582,13 +686,20 @@ export default function AddFieldsForm({
                         control={form.control}
                         name="defaultValue"
                         render={({ field }) => (
-                          <CustomFormItem className="col-start-1 block col-span-2" label="デフォルト値">
+                          <CustomFormItem
+                            className="col-span-2 col-start-1 block"
+                            label="デフォルト値"
+                          >
                             <FormControl>
                               <Textarea
                                 autoComplete="description"
                                 className="focus-visible:ring-offset-0"
                                 {...field}
-                                value={typeof field.value === 'boolean' ? String(field.value) : field.value ?? ''}
+                                value={
+                                  typeof field.value === 'boolean'
+                                    ? String(field.value)
+                                    : (field.value ?? '')
+                                }
                               />
                             </FormControl>
                           </CustomFormItem>
@@ -599,11 +710,24 @@ export default function AddFieldsForm({
                         key="default-value-text-markdown"
                         control={form.control}
                         name="defaultValue"
-                        render={({ field: { ref: _, value, onChange: _onChange, ...others } }) => {
+                        render={({
+                          field: {
+                            ref: _,
+                            value,
+                            onChange: _onChange,
+                            ...others
+                          },
+                        }) => {
                           return (
-                            <CustomFormItem className="col-start-1 col-span-2 block" label="デフォルト値">
+                            <CustomFormItem
+                              className="col-span-2 col-start-1 block"
+                              label="デフォルト値"
+                            >
                               <FormControl>
-                                <MDEditor value={value as string} onChange={_onChange} />
+                                <MDEditor
+                                  value={value as string}
+                                  onChange={_onChange}
+                                />
                               </FormControl>
                             </CustomFormItem>
                           )
@@ -616,9 +740,15 @@ export default function AddFieldsForm({
                       control={form.control}
                       name="defaultValue"
                       render={({ field: { onChange, value } }) => (
-                        <CustomFormItem className="col-start-1 col-span-2 block" label="デフォルト値">
+                        <CustomFormItem
+                          className="col-span-2 col-start-1 block"
+                          label="デフォルト値"
+                        >
                           <FormControl>
-                            <JSONEditorComponent text={value as string} onChangeText={(text) => onChange(text)} />
+                            <JSONEditorComponent
+                              text={value as string}
+                              onChangeText={(text) => onChange(text)}
+                            />
                           </FormControl>
                         </CustomFormItem>
                       )}
@@ -629,11 +759,16 @@ export default function AddFieldsForm({
                       control={form.control}
                       name="defaultValue"
                       render={({ field }) => (
-                        <CustomFormItem className="col-start-1 block" label="デフォルト値">
+                        <CustomFormItem
+                          className="col-start-1 block"
+                          label="デフォルト値"
+                        >
                           <FormControl>
                             <Switch
                               checked={field.value === true}
-                              onCheckedChange={(checked) => field.onChange(checked)}
+                              onCheckedChange={(checked) =>
+                                field.onChange(checked)
+                              }
                             />
                           </FormControl>
                         </CustomFormItem>
@@ -647,25 +782,35 @@ export default function AddFieldsForm({
                       control={form.control}
                       name="defaultValue"
                       render={({ field }) => (
-                        <CustomFormItem className="col-start-1 block" label="デフォルト値">
+                        <CustomFormItem
+                          className="col-start-1 block"
+                          label="デフォルト値"
+                        >
                           <FormControl>
                             <Input
                               autoComplete="defaultValue"
                               className="focus-visible:ring-offset-0"
                               {...field}
-                              value={typeof field.value === 'boolean' ? String(field.value) : field.value ?? ''}
+                              value={
+                                typeof field.value === 'boolean'
+                                  ? String(field.value)
+                                  : (field.value ?? '')
+                              }
                             />
                           </FormControl>
                         </CustomFormItem>
                       )}
                     />
                   ))}
-                <div className="flex gap-10 justify-start items-start">
+                <div className="flex items-start justify-start gap-10">
                   <FormField
                     control={form.control}
                     name="isRequired"
                     render={({ field }) => (
-                      <CustomFormItem className="flex flex-col w-fit space-y-1" label="必須項目">
+                      <CustomFormItem
+                        className="flex w-fit flex-col space-y-1"
+                        label="必須項目"
+                      >
                         <FormControl>
                           <Switch
                             checked={field.value}
@@ -680,7 +825,10 @@ export default function AddFieldsForm({
                     control={form.control}
                     name="isShowedOnList"
                     render={({ field }) => (
-                      <CustomFormItem className="flex flex-col w-fit space-y-1" label="一覧表示">
+                      <CustomFormItem
+                        className="flex w-fit flex-col space-y-1"
+                        label="一覧表示"
+                      >
                         <FormControl>
                           <Switch
                             checked={field.value}
@@ -696,17 +844,25 @@ export default function AddFieldsForm({
                   control={form.control}
                   name="description"
                   render={({ field }) => (
-                    <CustomFormItem className="block col-span-2" label="説明">
+                    <CustomFormItem className="col-span-2 block" label="説明">
                       <FormControl>
-                        <Textarea autoComplete="description" className="focus-visible:ring-offset-0" {...field} />
+                        <Textarea
+                          autoComplete="description"
+                          className="focus-visible:ring-offset-0"
+                          {...field}
+                        />
                       </FormControl>
                     </CustomFormItem>
                   )}
                 />
               </div>
 
-              <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 mt-10">
-                <Button type="button" variant="secondary" onClick={() => setOpen(false)}>
+              <div className="mt-10 flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
+                <Button
+                  type="button"
+                  variant="secondary"
+                  onClick={() => setOpen(false)}
+                >
                   キャンセル
                 </Button>
                 <Button type="button" onClick={form.handleSubmit(onSubmit)}>

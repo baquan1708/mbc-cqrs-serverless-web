@@ -155,10 +155,13 @@ export type ValidateRule = {
  */
 export function getValidateRules<
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(
   validateRule: ValidateRule
-): Omit<RegisterOptions<TFieldValues, TName>, 'valueAsNumber' | 'valueAsDate' | 'setValueAs' | 'disabled'> {
+): Omit<
+  RegisterOptions<TFieldValues, TName>,
+  'valueAsNumber' | 'valueAsDate' | 'setValueAs' | 'disabled'
+> {
   // ルールの定義
   const rules = {}
   const errorLabel = validateRule.errorLabel ?? validateRule.label
@@ -328,7 +331,12 @@ export function getValidateRules<
  * @param val 入力値
  */
 export function required(value: any): boolean {
-  return value !== null && value !== undefined && value !== '' && (!Array.isArray(value) || value.length > 0)
+  return (
+    value !== null &&
+    value !== undefined &&
+    value !== '' &&
+    (!Array.isArray(value) || value.length > 0)
+  )
 }
 
 /**
@@ -338,7 +346,11 @@ export function required(value: any): boolean {
  * @param otherFieldValue 他のフィールドの値
  * @param otherFieldMatchedValue 他のフィールドの比較対象値
  */
-export function requiredIf(value: any, otherFieldValue: any, otherFieldMatchedValue: any): boolean {
+export function requiredIf(
+  value: any,
+  otherFieldValue: any,
+  otherFieldMatchedValue: any
+): boolean {
   // requiredIfチェック対象が合致していなければtrue
   if (otherFieldValue != otherFieldMatchedValue) {
     return true
@@ -353,7 +365,9 @@ export function requiredIf(value: any, otherFieldValue: any, otherFieldMatchedVa
  * @param val
  */
 export function zenkaku(value: any): boolean {
-  return !value || String(value).match(/^[^\x01-\x7E\uFF61-\uFF9F]+$/)?.length > 0
+  return (
+    !value || String(value).match(/^[^\x01-\x7E\uFF61-\uFF9F]+$/)?.length > 0
+  )
 }
 
 /**
@@ -399,7 +413,9 @@ export function hankakuEisu(value: any): boolean {
  * @param val
  */
 export function hankakuEisuKigo(value: any): boolean {
-  return !value || String(value).match(/^[a-zA-Z0-9!-/:-@\[-`{-~ ]*$/)?.length > 0
+  return (
+    !value || String(value).match(/^[a-zA-Z0-9!-/:-@\[-`{-~ ]*$/)?.length > 0
+  )
 }
 
 /**
@@ -415,7 +431,11 @@ export function tel(value: any): boolean {
   if (value.replace(/[^0-9]/g, '').length < 10) {
     return false
   }
-  return String(value).match(/^[\(]{0,1}[0-9]{2,4}[\)\-\(]{0,1}[0-9]{2,4}[\)\-]{0,1}[0-9]{3,4}$/)?.length > 0
+  return (
+    String(value).match(
+      /^[\(]{0,1}[0-9]{2,4}[\)\-\(]{0,1}[0-9]{2,4}[\)\-]{0,1}[0-9]{3,4}$/
+    )?.length > 0
+  )
 }
 
 /**
@@ -424,7 +444,11 @@ export function tel(value: any): boolean {
  * @param val
  */
 export function email(value: any): boolean {
-  return !value || String(value).match(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/)?.length > 0
+  return (
+    !value ||
+    String(value).match(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/)
+      ?.length > 0
+  )
 }
 
 /**
@@ -452,7 +476,11 @@ export function emailMultiple(value: any): boolean {
  * @param val
  */
 export function url(value: any): boolean {
-  return !value || String(value).match(/^(https?:\/\/[\w\/:%#\$&\?\(\)~\.=\+\-]+)$/)?.length > 0
+  return (
+    !value ||
+    String(value).match(/^(https?:\/\/[\w\/:%#\$&\?\(\)~\.=\+\-]+)$/)?.length >
+      0
+  )
 }
 
 /**
@@ -479,7 +507,11 @@ export function length(value: any, len: number, addComma?: boolean): boolean {
  * ※null系はtrue返却。必須チェックは別途行うこと
  * @param val
  */
-export function maxLength(value: any, len: number, addComma?: boolean): boolean {
+export function maxLength(
+  value: any,
+  len: number,
+  addComma?: boolean
+): boolean {
   if (!value) {
     return true
   }
@@ -533,7 +565,11 @@ export function date(value): boolean {
   const date = new Date(year, month - 1, day)
 
   // 日付の存在チェック
-  return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day
+  return (
+    date.getFullYear() === year &&
+    date.getMonth() === month - 1 &&
+    date.getDate() === day
+  )
 }
 
 /**
@@ -609,7 +645,9 @@ export function ip(value): boolean {
   }
 
   value = String(value).trim()
-  return /^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(value)
+  return /^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(
+    value
+  )
 }
 
 /**
@@ -754,7 +792,10 @@ export class CompareValueRule implements RuleInterface {
   /**
    *
    */
-  constructor(protected targetValue, protected compareType: CompareType) {}
+  constructor(
+    protected targetValue,
+    protected compareType: CompareType
+  ) {}
 
   // validate実施
   validate(value: any, errorLabel: string | ReactNode): string {
@@ -818,7 +859,10 @@ export class BreakAndNumberRule implements RuleInterface {
     // 各行毎にバリデーション
     for (const line of lines) {
       // maxLengthが設定されている場合、各行の文字数チェック
-      if (required(this.params?.maxLength) && line.length > this.params.maxLength) {
+      if (
+        required(this.params?.maxLength) &&
+        line.length > this.params.maxLength
+      ) {
         return `${errorLabel}は1行あたり${this.params.maxLength}文字以内で入力してください`
       }
       // 数値チェック

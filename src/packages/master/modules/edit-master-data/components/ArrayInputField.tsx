@@ -33,7 +33,7 @@ export default function ArrayInputField({
   return (
     <div className="flex flex-col gap-2">
       {values.map((value, index) => (
-        <div key={index} className="flex gap-2 items-center">
+        <div key={index} className="flex items-center gap-2">
           <Input
             disabled={disabled}
             value={value}

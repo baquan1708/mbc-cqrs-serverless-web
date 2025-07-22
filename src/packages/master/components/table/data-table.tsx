@@ -167,7 +167,7 @@ function DataTablePagination<TData>({
             value={jumpToPage}
             onChange={(e) => setJumpToPage(e.target.value)}
             onKeyDown={handleJumpToPage}
-            className="h-6 w-16 text-center flex items-center justify-center p-0"
+            className="flex h-6 w-16 items-center justify-center p-0 text-center"
             min={1}
             max={table.getPageCount()}
           />
@@ -231,13 +231,13 @@ export function DataTable<TData, TValue>({
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow
-                className={cn('border-b font-bold border-border')}
+                className={cn('border-b border-border font-bold')}
                 key={headerGroup.id}
               >
                 {headerGroup.headers.map((header) => {
                   return (
                     <TableHead
-                      className="px-0 font-bold bg-muted"
+                      className="bg-muted px-0 font-bold"
                       key={header.id}
                     >
                       {header.isPlaceholder

@@ -25,8 +25,8 @@ function ModalContent({
   onCloseModal?: () => void
 }) {
   return (
-    <div className="flex flex-col w-full overflow-hidden">
-      <div className="mt-5 flex-1 mb-3">
+    <div className="flex w-full flex-col overflow-hidden">
+      <div className="mb-3 mt-5 flex-1">
         <JSONEditorComponent
           text={value}
           onChangeText={(json) => setValue(json)}
@@ -85,7 +85,13 @@ function TriggerButton({
     onClick?.()
   }
   return (
-    <Button type="button" variant="outline" className="block" disabled={disabled} onClick={handleClick}>
+    <Button
+      type="button"
+      variant="outline"
+      className="block"
+      disabled={disabled}
+      onClick={handleClick}
+    >
       JSONエディタ
     </Button>
   )
@@ -141,7 +147,12 @@ export default function AddJsonData({
         <TriggerButton disabled={disabled} open={open} setOpen={setOpen} />
       </Modal.Open>
       <Modal.Window name="add-json-data">
-        <ModalContent setOpen={setOpen} value={value} saveData={saveData} setValue={setValue} />
+        <ModalContent
+          setOpen={setOpen}
+          value={value}
+          saveData={saveData}
+          setValue={setValue}
+        />
       </Modal.Window>
     </Modal>
   )

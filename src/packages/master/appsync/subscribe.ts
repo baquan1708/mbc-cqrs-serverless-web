@@ -1,5 +1,9 @@
 import { gql, ApolloClient, NormalizedCacheObject } from '@apollo/client'
-import { Message, OnMessageSubscription, OnMessageSubscriptionVariables } from './API'
+import {
+  Message,
+  OnMessageSubscription,
+  OnMessageSubscriptionVariables,
+} from './API'
 import { onMessage } from './graphql/subscriptions'
 
 export type CommandStatusContent = {
@@ -31,7 +35,10 @@ export function subscribeMessage(
   filters: OnMessageSubscriptionVariables,
   handler: (value: DecodedMessage) => void | Promise<void>
 ) {
-  const observable = client.subscribe<OnMessageSubscription, OnMessageSubscriptionVariables>({
+  const observable = client.subscribe<
+    OnMessageSubscription,
+    OnMessageSubscriptionVariables
+  >({
     query: gql`
       ${onMessage}
     `,

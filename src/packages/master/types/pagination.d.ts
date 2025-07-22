@@ -74,7 +74,9 @@ export type PaginationProps<RecordType> = {
   headerColor?: string
   headerBgColor?: string
   className?: string
-  rowClassName?: string | ((record: RecordType, index: number, indent: number) => string)
+  rowClassName?:
+    | string
+    | ((record: RecordType, index: number, indent: number) => string)
   onClickRow?: (record: RecordType) => void
   ordering?: string
   scroll?: object
