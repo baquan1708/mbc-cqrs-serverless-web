@@ -22,7 +22,8 @@
     "build": "tsup",
     "build:watch": "tsup --watch",
     "start": "next start -p 8999",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "prepare": "husky"
   },
   "dependencies": {
     "@apollo/client": "^3.13.1",
@@ -74,6 +75,8 @@
     "zod": "^3.23.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@swc/core": "^1.12.9",
     "@types/node": "^20",
     "@types/react": "^18",
@@ -81,6 +84,8 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.2",
     "glob": "^11.0.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
     "postcss": "^8",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.6.14",
@@ -92,5 +97,8 @@
     "next": "^14.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,md}": "prettier --write"
   }
 }
