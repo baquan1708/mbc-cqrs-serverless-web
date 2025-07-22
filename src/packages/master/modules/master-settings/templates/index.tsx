@@ -226,7 +226,7 @@ export default function MasterSetting() {
                 onSubmitSearch(onValid)
               })}
             >
-              <div className="w-full flex-col flex w-fullitems-center justify-center  px-3 ">
+              <div className="w-full flex-col flex items-center justify-center px-3 ">
                 <div className="flex gap-10 w-full">
                   <div className="flex w-fit flex-col gap-4">
                     <div className="lg:text-md flex h-10 items-center text-sm font-semibold">

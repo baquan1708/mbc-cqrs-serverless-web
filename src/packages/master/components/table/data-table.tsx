@@ -146,13 +146,13 @@ function DataTablePagination<TData>({
           table.setPageSize(Number(value))
         }}
       >
-        <SelectTrigger className="h-6 w-[120px] px-2">
+        <SelectTrigger className="h-6 w-fit px-2">
           <SelectValue>{`${
             table.getState().pagination.pageSize
           } 件 / ページ`}</SelectValue>
         </SelectTrigger>
         <SelectContent>
-          {[5, 10, 20, 30, 40, 50].map((pageSize) => (
+          {[10, 20, 50, 100].map((pageSize) => (
             <SelectItem key={pageSize} value={`${pageSize}`}>
               {pageSize} 件 / ページ
             </SelectItem>
