@@ -35,6 +35,12 @@ import { ChevronLeft, ChevronRight, Inbox } from 'lucide-react'
 import { cn } from '../../lib/utils'
 import { DOTS, usePaginationRange } from '../../lib/hook/usePaginationRange'
 
+declare module '@tanstack/react-table' {
+  interface ColumnMeta<TData extends unknown, TValue> {
+    size?: string
+  }
+}
+
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
@@ -227,7 +233,7 @@ export function DataTable<TData, TValue>({
     <div className="space-y-2">
       <DataTablePagination table={table} rowCount={rowCount} />
       <div className="rounded-md">
-        <Table>
+        <Table className="table-fixed">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow
@@ -239,6 +245,9 @@ export function DataTable<TData, TValue>({
                     <TableHead
                       className="bg-muted px-0 font-bold"
                       key={header.id}
+                      style={{
+                        width: header.column.columnDef.meta?.size,
+                      }}
                     >
                       {header.isPlaceholder
                         ? null
@@ -260,16 +269,14 @@ export function DataTable<TData, TValue>({
                   data-state={row.getIsSelected() && 'selected'}
                   onClick={() => onClickRow && onClickRow(row.original)}
                   className={cn(
-                    'border-b border-border transition-all duration-200', // UPDATED
-                    'data-[state=selected]:bg-accent/70 data-[state=selected]:font-normal', // UPDATED (using accent with some opacity)
+                    'border-b border-border transition-all duration-200',
+                    'data-[state=selected]:bg-accent/70 data-[state=selected]:font-normal',
                     { 'cursor-pointer': onClickRow }
                   )}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
-                      className={cn('text-bold', {
-                        'bg-accent/50': cell.column.getIsSorted(),
-                      })}
+                      className={cn('text-bold break-words')}
                       key={cell.id}
                     >
                       {flexRender(

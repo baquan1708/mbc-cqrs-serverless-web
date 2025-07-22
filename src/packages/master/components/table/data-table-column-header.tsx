@@ -13,7 +13,7 @@ const DataTableColumnHeader = <TData, TValue>({
   return (
     <Button
       variant="ghost"
-      className="flex w-full items-center justify-between rounded-none font-bold"
+      className="flex w-full items-center justify-between rounded-none bg-muted font-bold hover:bg-muted/80 focus:bg-muted/80 focus:!text-muted-foreground"
       onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
     >
       {title}

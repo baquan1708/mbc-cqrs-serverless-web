@@ -185,6 +185,9 @@ export default function MasterData() {
           if (item.physicalName === 'code') {
             return {
               id: item.physicalName,
+              meta: {
+                size: '25%',
+              },
               accessorKey: 'masterCode',
               header: ({ column }) => (
                 <DataTableColumnHeader column={column} title={item.name} />
@@ -241,6 +244,9 @@ export default function MasterData() {
       const defaultColumns: ColumnDef<MasterRdsEntity>[] = [
         {
           accessorKey: 'masterCode',
+          meta: {
+            size: '25%',
+          },
           header: ({ column }) => (
             <DataTableColumnHeader column={column} title="コード" />
           ),
@@ -259,6 +265,9 @@ export default function MasterData() {
         },
         {
           accessorKey: 'name',
+          meta: {
+            size: '25%',
+          },
           header: ({ column }) => (
             <DataTableColumnHeader column={column} title="名称" />
           ),

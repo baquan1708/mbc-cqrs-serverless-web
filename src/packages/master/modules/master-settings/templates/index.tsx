@@ -36,6 +36,7 @@ import { SearchPropsMasterSetting } from '../../../types/master-setting'
 import { MasterRdsEntity } from '../../../types/MasterRdsEntity'
 import { MasterRdsListEntity } from '../../../types/MasterRdsListEntity'
 import { PaginateProps } from '../../../types/pagination'
+import { DataTableColumnHeader } from '../../../components/table/data-table-column-header'
 
 export default function MasterSetting() {
   const user = useUserContext()
@@ -132,24 +133,16 @@ export default function MasterSetting() {
     () => [
       {
         accessorKey: 'code',
+        meta: {
+          size: '25%',
+        },
         header: ({ column }) => {
-          return (
-            <Button
-              variant="ghost"
-              className="flex w-full items-center justify-between !rounded-none font-bold"
-              onClick={() =>
-                column.toggleSorting(column.getIsSorted() === 'asc')
-              }
-            >
-              コード
-              <SortIndicator sortState={column.getIsSorted()} />
-            </Button>
-          )
+          return <DataTableColumnHeader column={column} title="コード" />
         },
         cell: ({ row }) => (
           <Link
             prefetch={false}
-            className="block w-[200px] overflow-clip break-words text-[hsl(var(--primary))] hover:text-[hsl(var(--primary))] hover:underline"
+            className="block w-full overflow-clip break-words text-[hsl(var(--primary))] hover:text-[hsl(var(--primary))] hover:underline"
             href={`${
               urlProvider.DATA_PAGE_URL
             }?isTypeCodeFixed=1&typeCode=${encodeURIComponent(
@@ -162,23 +155,18 @@ export default function MasterSetting() {
       },
       {
         accessorKey: 'name',
+        meta: {
+          size: '25%',
+        },
         header: ({ column }) => {
-          return (
-            <Button
-              variant="ghost"
-              className="flex w-full items-center justify-between !rounded-none font-bold"
-              onClick={() =>
-                column.toggleSorting(column.getIsSorted() === 'asc')
-              }
-            >
-              名称
-              <SortIndicator sortState={column.getIsSorted()} />
-            </Button>
-          )
+          return <DataTableColumnHeader column={column} title="名称" />
         },
       },
       {
         accessorKey: 'attributes.description',
+        meta: {
+          size: '50%',
+        },
         header: () => {
           return (
             <div className="flex w-full items-center justify-between px-4 font-bold">
@@ -186,7 +174,9 @@ export default function MasterSetting() {
             </div>
           )
         },
-        cell: ({ row }) => row.original.attributes['description'],
+        cell: ({ row }) => (
+          <div className="px-4">{row.original.attributes['description']}</div>
+        ),
       },
     ],
     [tenantCode]
